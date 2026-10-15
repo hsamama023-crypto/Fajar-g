@@ -2,95 +2,71 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#e91e63">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#ff2e78">
 <title>Fajar G ❤️</title>
+<link rel="icon" href="icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{height:100vh;width:100vw;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffafbd);background-size:400% 400%;animation:bgMove 10s ease infinite;overflow:hidden}
-@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.card{background:rgba(255,255,255,0.92);backdrop-filter:blur(15px);padding:35px 28px;border-radius:32px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.25);max-width:360px;width:90%;z-index:10;animation:cardPop 0.8s cubic-bezier(0.175,0.885,0.32,1.275)}
-@keyframes cardPop{0%{transform:scale(0.5) translateY(50px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
-.logo{font-size:52px;animation:beat 1s infinite}
-@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-h1{font-size:26px;color:#333;margin:15px 0 8px;line-height:1.3}
-h1 span{color:#e91e63;font-weight:700}
-.sub{color:#666;font-size:15px;margin-bottom:25px;line-height:1.5}
-.btns{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;position:relative;min-height:60px}
-.btn{border:none;padding:14px 28px;border-radius:50px;font-size:16px;font-weight:600;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 20px rgba(0,0,0,0.15)}
-.yes{background:linear-gradient(135deg,#e91e63,#ff4081);color:white}
-.yes:active{transform:scale(0.95)}
-.no{background:#f0f0f0;color:#555;position:relative;z-index:20}
-.heart-rain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5}
-.heart{position:absolute;top:-10%;animation:fall linear forwards}
-@keyframes fall{to{top:110%;transform:rotate(360deg) translateX(30px)}}
-.final{font-size:22px;color:#e91e63;font-weight:700;line-height:1.4;animation:pop 0.6s}
-@keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
-.lyric{margin-top:12px;font-size:18px;background:linear-gradient(90deg,#e91e63,#ff9800);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
+body{height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(120deg,#ff758c,#ff2e78,#ffafbd);background-size:400% 400%;animation:bg 8s infinite;overflow:hidden}
+@keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.card{width:92%;max-width:360px;background:rgba(255,255,255,.96);border-radius:36px;padding:36px 22px;text-align:center;box-shadow:0 25px 70px rgba(0,0,0,.35);position:relative}
+.logo{font-size:64px;animation:beat 1s infinite}@keyframes beat{50%{transform:scale(1.25)}}
+h1{font-size:27px;margin:10px 0}h1 span{color:#ff2e78}
+.sub{color:#666;font-size:14px;margin-bottom:26px}
+.btns{height:120px;position:relative;display:flex;justify-content:center;align-items:center;gap:16px}
+.btn{border:0;padding:15px 30px;border-radius:100px;font-weight:800;font-size:16px;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,.2);transition:.2s;user-select:none;-webkit-tap-highlight-color:transparent}
+.yes{background:linear-gradient(135deg,#ff2e78,#ff7eb3);color:#fff;z-index:5}
+.no{background:#222;color:#fff;position:absolute;left:190px;top:50px;z-index:10}
+.heart{position:fixed;top:-5%;animation:fall linear forwards}
+@keyframes fall{to{top:110vh;transform:rotate(360deg)}}
+.final{font-size:22px;font-weight:800;color:#ff2e78;line-height:1.4}
+.lyric{margin-top:12px;font-size:18px;font-weight:800;background:linear-gradient(90deg,#ff2e78,#ff9800);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 </style>
 </head>
 <body>
 <div class="card" id="card">
 <div class="logo">💖</div>
 <h1>Will You Be My <span>Forever?</span></h1>
-<p class="sub">My Dearest <b>Fajar G</b>, you are my everything. I can't imagine life without you.</p>
-<div class="btns">
-<button class="btn yes" id="yes">YES, I WILL! 🥰</button>
+<p class="sub">My Dearest <b>Fajar G</b>, you are my everything!</p>
+<div class="btns" id="area">
+<button class="btn yes" id="yes">YES! 🥰</button>
 <button class="btn no" id="no">No 🙈</button>
 </div>
 </div>
-<div class="heart-rain" id="rain"></div>
-<audio id="realSong" src="song.mp3" preload="auto" loop></audio>
-
+<audio id="song" src="song.mp3" preload="auto" loop></audio>
 <script>
-// PWA install
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+const noBtn=document.getElementById('no');
+const area=document.getElementById('area');
+let texts=["No 🙈","Are you sure? 😜","Pakka? 🤭","Socho phir se! 😏","Hehe 😂","Catch me! 🏃‍♀️","Nope! 😝"];
 
-// NO button bhagne wala - TikTok smooth
-const no=document.getElementById('no');
-const move=()=>{
-  no.style.position='absolute';
-  const x=Math.random()*(window.innerWidth-100);
-  const y=Math.random()*(window.innerHeight-100);
-  no.style.left=x+'px';
-  no.style.top=y+'px';
+function runAway(){
+  const maxX=area.clientWidth-80;
+  const maxY=area.clientHeight-50;
+  const x=Math.random()*maxX;
+  const y=Math.random()*maxY;
+  noBtn.style.left=x+'px';
+  noBtn.style.top=y+'px';
+  noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];
 }
-no.addEventListener('mouseover',move);
-no.addEventListener('touchstart',move);
-no.addEventListener('click',move);
 
-// Heart rain
-function createHearts(){
-  const rain=document.getElementById('rain');
-  const hearts=['💖','💕','💓','💗','💞','❤️','💘','🌸'];
-  setInterval(()=>{
-    const h=document.createElement('div');
-    h.className='heart';
-    h.innerText=hearts[Math.floor(Math.random()*hearts.length)];
-    h.style.left=Math.random()*100+'vw';
-    h.style.animationDuration=(Math.random()*2+2)+'s';
-    h.style.fontSize=(Math.random()*20+18)+'px';
-    rain.appendChild(h);
-    setTimeout(()=>h.remove(),4000);
-  },120);
-}
-createHearts();
+// Mouse aate hi bhago, click hone se pehle hi!
+noBtn.addEventListener('mouseenter',runAway);
+noBtn.addEventListener('touchstart', (e)=>{e.preventDefault(); runAway();});
+noBtn.addEventListener('click', (e)=>{e.preventDefault(); runAway(); return false;});
 
-// YES pe Real Song + Fajar G Message
-document.getElementById('yes').addEventListener('click',()=>{
-  const audio=document.getElementById('realSong');
-  audio.volume=1;
-  audio.play().catch(()=>{});
-  document.getElementById('card').innerHTML=`
-    <div class="logo">😍</div>
-    <div class="final">Yayy! I Knew You Would Say Yes!</div>
-    <div class="lyric">🎶 Aj tu le ma Teri hui,<br>Tu aj mera ve ❤️ 🎶</div>
-    <p class="sub" style="margin-top:15px">My <b>Fajar G</b> 💖 You made me the happiest!</p>
-  `;
-});
+// Hearts
+setInterval(()=>{
+ let h=document.createElement('div');h.className='heart';h.innerText=['💖','💕','😂','❤️','✨'][Math.floor(Math.random()*5)];
+ h.style.left=Math.random()*100+'vw';h.style.fontSize=(20+Math.random()*20)+'px';h.style.animationDuration=(2+Math.random()*2)+'s';
+ document.body.appendChild(h);setTimeout(()=>h.remove(),4000);
+},120);
+
+document.getElementById('yes').onclick=()=>{
+ document.getElementById('song').play().catch(()=>{});
+ document.getElementById('card').innerHTML=`<div class="logo">😍💖</div><div class="final">Yayy! I Knew You'd Say YES,<br>My Fajar G! 🥹❤️</div><div class="lyric">🎶 Aj tu le ma Teri hui,<br>Tu aj mera ve 🎶</div><p class="sub" style="margin-top:14px">Ab to NO ka option hi nahi bacha! 😂</p>`;
+};
 </script>
 </body>
 </html>
