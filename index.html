@@ -6,22 +6,19 @@
 <title>Fajar ❤️</title>
 <link rel="manifest" href="./manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="theme-color" content="#000000">
 <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:system-ui}
 .hero{min-height:100vh;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 22px;text-align:center;background:radial-gradient(100% 70% at 50% 0%, #ff1a75 0%, #000 70%)}
-.logo{width:130px;height:130px;border-radius:36px;background:linear-gradient(135deg,#ff1a75,#ffb3d1);display:flex;align-items:center;justify-content:center;font-size:72px;box-shadow:0 20px 60px rgba(255,26,117,.7);animation:float 3s infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-h1{font-size:42px;font-weight:900;margin-top:14px;line-height:1.1}h1 span{color:#ff8fab}
+.logo{width:130px;height:130px;border-radius:36px;background:linear-gradient(135deg,#ff1a75,#ffb3d1);display:flex;align-items:center;justify-content:center;font-size:72px;box-shadow:0 20px 60px rgba(255,26,117,.7)}
+h1{font-size:40px;font-weight:900;margin-top:14px;line-height:1.1}h1 span{color:#ff8fab}
 .sub{margin:18px 0;color:#ddd;font-size:18px;line-height:1.6;max-width:340px}
 .btns{width:100%;max-width:360px;display:flex;flex-direction:column;gap:14px;margin-top:24px}
 .btn{width:100%;padding:18px;border-radius:50px;border:none;font-size:19px;font-weight:900;cursor:pointer}
-.yes{background:#fff;color:#ff1a75;box-shadow:0 10px 30px rgba(255,255,255,.25)}
-.no{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.yes{background:#fff;color:#ff1a75}.no{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+#installBtn{display:none;background:linear-gradient(135deg,#ff1a75,#ff8fab);color:#fff;margin-top:8px;box-shadow:0 10px 30px rgba(255,26,117,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 </style>
 </head>
 <body>
@@ -32,12 +29,21 @@ h1{font-size:42px;font-weight:900;margin-top:14px;line-height:1.1}h1 span{color:
 <div class="btns">
 <button class="btn yes" id="yes">YES, I WILL! 😍💖</button>
 <button class="btn no" id="no">No 🙈</button>
+<button class="btn" id="installBtn">📲 INSTALL APP - Proper App Banao!</button>
 </div>
 </div>
 <script>
+let deferredPrompt=null;
+const installBtn=document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.style.display='block';});
+installBtn.addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();const r=await deferredPrompt.userChoice;if(r.outcome==='accepted'){installBtn.innerText='✅ Installed! Home Screen Pe Dekho!';}deferredPrompt=null;});
+
 if('serviceWorker' in navigator){navigator.serviceWorker.register(URL.createObjectURL(new Blob([`self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).catch(()=>new Response('offline'))))`],{type:'text/javascript'})))}
-const no=document.getElementById('no');no.addEventListener('touchstart',()=>{no.style.position='absolute';no.style.left=Math.random()*60+'%';no.style.top=Math.random()*60+'%'});no.addEventListener('mouseover',()=>{no.style.position='absolute';no.style.left=Math.random()*60+'%';no.style.top=Math.random()*60+'%'});
-document.getElementById('yes').addEventListener('click',()=>{document.body.innerHTML='<div style=background:#000;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px><div style=font-size:90px>💖</div><h1 style=font-size:44px>She Said YES! 😭❤️</h1><p style=margin-top:20px;font-size:22px;color:#ffb3d1>You made me the happiest person in the world!<br><br><b style=color:#fff>I Love You Fajar, My Forever!</b></p></div>'});
+const no=document.getElementById('no');
+const move=()=>{no.style.position='absolute';no.style.left=Math.random()*60+'%';no.style.top=Math.random()*70+'%';};
+no.addEventListener('touchstart',move);no.addEventListener('mouseover',move);
+document.getElementById('yes').addEventListener('click',()=>{document.body.innerHTML='<div style=background:#000;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px><div style=font-size:90px>💖</div><h1 style=font-size:44px>She Said YES! 😭❤️</h1><p style=margin-top:20px;font-size:22px;color:#ffb3d1>You made me the happiest person!<br><br><b style=color:#fff>I Love You Fajar!</b></p></div>'});
+setTimeout(()=>{if(!deferredPrompt){installBtn.style.display='block';installBtn.innerText='📲 Add to Home Screen (3 dots > Add)';installBtn.onclick=()=>alert('Upar 3 dots ⋮ dabao > Add to Home screen > Add dabao');}},3000);
 </script>
 </body>
 </html>
