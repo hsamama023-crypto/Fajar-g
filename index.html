@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fajar ❤️</title>
+<style>
+body{margin:0;background:#7B2FFF;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:sans-serif}
+.card{background:white;width:90%;max-width:350px;border-radius:30px;padding:0;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center}
+.top{background:linear-gradient(90deg,#FF1A8B,#FF6AB5);height:20px;border-radius:30px 30px 0 0}
+.content{padding:30px 20px}
+.heart{font-size:60px}
+h1{color:#222;font-size:22px;margin:15px 0}
+p{color:#666}
+.btn-yes{background:#FF1A8B;color:white;border:none;padding:14px 35px;border-radius:30px;font-size:18px;margin:10px;cursor:pointer}
+.btn-no{background:#eee;border:none;padding:14px 30px;border-radius:30px;font-size:16px;position:relative}
+.install-btn{background:#111;color:white;border:none;width:100%;padding:18px;border-radius:50px;font-size:20px;font-weight:bold;margin-top:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 5px 15px rgba(0,0,0,0.3)}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="top"></div>
+<div class="content" id="main">
+<div class="heart">💖</div>
+<h1>Fajar, Will You Be Mine? 🥺❤️</h1>
+<p>Samama loves you so much!</p>
+<button class="btn-yes" onclick="yes()">YES 😍</button>
+<button class="btn-no" id="noBtn" onmouseover="move()" onclick="move()">NO 🙈</button>
+<button class="install-btn" id="installBtn" onclick="installNow()">📱 App Install Karo</button>
+</div>
+</div>
+<script>
+function move(){
+let b=document.getElementById('noBtn');
+b.style.left=(Math.random()*60-30)+'px';
+b.style.top=(Math.random()*40-20)+'px';
+b.style.position='relative';
+}
+function yes(){
+document.getElementById('main').innerHTML='<div class=heart>💖💖💖</div><h1>Yay! Fajar is Mine! 😍</h1><p>I Love You So Much Fajar!</p><p>- Samama ❤️</p><button class=install-btn>📱 App Install Karo</button>';
+}
+let promptEvent;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();promptEvent=e;});
+function installNow(){
+if(promptEvent){promptEvent.prompt()}
+else{alert('3 dot dabao > Add to Home Screen dabao, APP ban jayegi! 📲');}
+}
+</script>
+</body>
+</html>
