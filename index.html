@@ -3,95 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fajar ❤️ My Forever</title>
+<title>Fajar ❤️</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="theme-color" content="#000000">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
-<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiRmFqYXIg4p2kIE15IEZvcmV2ZXIiLCJzaG9ydF9uYW1lIjoiRmFqYXIg4p2kIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzAwMDAwMCIsInRoZW1lX2NvbG9yIjoiI2ZmMWE3NSIsImljb25zIjpbXX0=">
+<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'SF Pro Display',-apple-system,sans-serif}
-body{background:#000;color:white;min-height:100vh;overflow-x:hidden}
-.hero{min-height:100vh;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:radial-gradient(120% 80% at 50% 0%, #ff1a75 0%, #8a0a3d 30%, #000 75%);text-align:center;position:relative}
-.top-badge{margin-top:10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.15);padding:8px 18px;border-radius:50px;font-size:13px;letter-spacing:0.5px}
-.logo-big{width:110px;height:110px;margin:28px 0 16px;background:linear-gradient(135deg,#ff1a75,#ff8fab);border-radius:32px;display:flex;align-items:center;justify-content:center;font-size:62px;box-shadow:0 20px 50px rgba(255,26,117,0.5);animation:float 3s ease-in-out infinite}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
+.hero{min-height:100vh;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 22px;text-align:center;background:radial-gradient(100% 70% at 50% 0%, #ff1a75 0%, #000 70%)}
+.logo{width:130px;height:130px;border-radius:36px;background:linear-gradient(135deg,#ff1a75,#ffb3d1);display:flex;align-items:center;justify-content:center;font-size:72px;box-shadow:0 20px 60px rgba(255,26,117,.7);animation:float 3s infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-h1{font-size:38px;line-height:1.1;font-weight:900;margin:10px 0 0;max-width:360px}
-h1 span{background:linear-gradient(90deg,#fff,#ffb3d1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.sub{margin:18px 0 10px;font-size:17px;color:#e0c0cf;line-height:1.6;max-width:340px}
-.sub b{color:white}
-.btn-area{margin-top:32px;width:100%;max-width:340px;display:flex;flex-direction:column;gap:14px}
-.big-btn{width:100%;padding:18px;border-radius:50px;border:none;font-size:18px;font-weight:900;cursor:pointer}
-.yes{background:white;color:#ff1a75;box-shadow:0 10px 30px rgba(255,255,255,0.25);font-size:20px}
-.no{background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2)}
-.install-btn{margin-top:8px;background:linear-gradient(90deg,#ff1a75,#ff4d8d);color:white;padding:16px;border-radius:50px;border:none;font-size:16px;font-weight:800;box-shadow:0 8px 24px rgba(255,26,117,0.5)}
-.hint{margin-top:10px;color:#aaa;font-size:12px}
-.hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.hearts span{position:absolute;animation:fall linear infinite}
-@keyframes fall{0%{transform:translateY(-100px) rotate(0deg)}100%{transform:translateY(110vh) rotate(360deg)}}
+h1{font-size:42px;font-weight:900;margin-top:14px;line-height:1.1}h1 span{color:#ff8fab}
+.sub{margin:18px 0;color:#ddd;font-size:18px;line-height:1.6;max-width:340px}
+.btns{width:100%;max-width:360px;display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.btn{width:100%;padding:18px;border-radius:50px;border:none;font-size:19px;font-weight:900;cursor:pointer}
+.yes{background:#fff;color:#ff1a75;box-shadow:0 10px 30px rgba(255,255,255,.25)}
+.no{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
 </style>
 </head>
 <body>
-<div class="hero" id="hero">
-<div class="hearts" id="hearts"></div>
-<div class="top-badge">💖 FOR MY LOVE FAJAR 💖</div>
-<div class="logo-big">💖</div>
+<div class="hero">
+<div class="logo">💖</div>
 <h1>Will You Be My <span>Forever?</span></h1>
-<p class="sub">My Dearest <b>Fajar</b>,<br><br>From the day I met you, my life changed. You are my happiness, my peace, my everything.<br><br><b>I Love You More Than Words Can Say.</b></p>
-<div class="btn-area">
-<button class="big-btn yes" id="yesBtn">YES, I WILL! 😍💖</button>
-<button class="big-btn no" id="noBtn">No 🙈</button>
-<button class="install-btn" id="installBtn">📲 Install Our Love App</button>
-<div class="hint" id="hint">Tap install and keep our love on your home screen forever ❤️</div>
+<p class="sub">My Dearest <b>Fajar</b>, you are my happiness, my peace, my everything.<br><b style="color:#fff">I Love You So Much!</b></p>
+<div class="btns">
+<button class="btn yes" id="yes">YES, I WILL! 😍💖</button>
+<button class="btn no" id="no">No 🙈</button>
 </div>
 </div>
-
 <script>
-// Floating hearts
-const heartsBox=document.getElementById('hearts');
-for(let i=0;i<18;i++){
-  const s=document.createElement('span');
-  s.textContent=['💖','💗','💓','💞'][Math.floor(Math.random()*4)];
-  s.style.left=Math.random()*100+'%';
-  s.style.top=Math.random()*20+'%';
-  s.style.fontSize=(Math.random()*20+14)+'px';
-  s.style.animationDuration=(Math.random()*6+4)+'s';
-  s.style.animationDelay=Math.random()*5+'s';
-  heartsBox.appendChild(s);
-}
-
-// PWA Direct Install
-if('serviceWorker' in navigator){
-  const sw=`self.addEventListener('fetch',e=>{})`;
-  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'text/javascript'})));
-}
-let deferredPrompt=null;
-const installBtn=document.getElementById('installBtn');
-const hint=document.getElementById('hint');
-window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault();deferredPrompt=e;
-  installBtn.textContent='📲 TAP TO INSTALL NOW 💖';
-  hint.textContent='Ready! Tap to install directly!';
-});
-installBtn.addEventListener('click',async()=>{
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    const {outcome}=await deferredPrompt.userChoice;
-    hint.textContent= outcome==='accepted'? 'Yay! Installed Forever! 😘' : 'It\'s okay, try again ❤️';
-    deferredPrompt=null;
-  }else{
-    hint.textContent='On iPhone: Share > Add to Home Screen | Android: ⋮ > Install App';
-  }
-});
-
-// No runs away
-const noBtn=document.getElementById('noBtn');
-noBtn.addEventListener('mouseover',()=>{noBtn.style.transform=`translate(${Math.random()*200-100}px, ${Math.random()*100-50}px)`});
-noBtn.addEventListener('touchstart',()=>{noBtn.style.transform=`translate(${Math.random()*200-100}px, ${Math.random()*100-50}px)`});
-noBtn.addEventListener('click',()=>{noBtn.style.display='none';hint.textContent='Smart girl! Only YES is the option 😂❤️'});
-
-// Yes click
-document.getElementById('yesBtn').addEventListener('click',()=>{
-  document.getElementById('hero').innerHTML=`<div class="logo-big">💖</div><h1>She Said <span>YES!!!</span> 😭❤️🎉</h1><p class="sub" style="font-size:20px">You made me the happiest person in the world!<br><br><b>I Love You Fajar, My Forever, My Everything! 💖💖💖</b><br><br>- Yours Only</p><button class="install-btn" onclick="location.reload()">Replay Our Love 💖</button>`;
-});
+if('serviceWorker' in navigator){navigator.serviceWorker.register(URL.createObjectURL(new Blob([`self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).catch(()=>new Response('offline'))))`],{type:'text/javascript'})))}
+const no=document.getElementById('no');no.addEventListener('touchstart',()=>{no.style.position='absolute';no.style.left=Math.random()*60+'%';no.style.top=Math.random()*60+'%'});no.addEventListener('mouseover',()=>{no.style.position='absolute';no.style.left=Math.random()*60+'%';no.style.top=Math.random()*60+'%'});
+document.getElementById('yes').addEventListener('click',()=>{document.body.innerHTML='<div style=background:#000;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px><div style=font-size:90px>💖</div><h1 style=font-size:44px>She Said YES! 😭❤️</h1><p style=margin-top:20px;font-size:22px;color:#ffb3d1>You made me the happiest person in the world!<br><br><b style=color:#fff>I Love You Fajar, My Forever!</b></p></div>'});
 </script>
 </body>
 </html>
