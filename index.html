@@ -27,12 +27,10 @@ h1{font-size:24px;color:#fff;font-weight:800;margin:12px 0 6px;min-height:32px} 
 .final2{font-family:'Great Vibes',cursive;font-size:32px;color:#ffb3c1;margin-top:2px}
 .counter{margin-top:6px;font-size:10px;color:#ff8a9a;letter-spacing:1px;background:rgba(255,0,51,0.1);padding:5px 12px;border-radius:100px;display:inline-block;border:1px solid rgba(255,0,51,0.2)}
 .caption{font-size:11px;color:#ffccd5;margin-top:4px;font-style:italic;min-height:16px}
-.lyrics{font-size:10px;color:rgba(255,255,255,0.6);margin-top:6px;letter-spacing:1px;animation:glow 2s infinite alternate}
-@keyframes glow{from{text-shadow:0 0 5px #ff2a5a} to{text-shadow:0 0 15px #ff2a5a}}
+.lyrics{font-size:10px;color:rgba(255,255,255,0.6);margin-top:6px;letter-spacing:1px}
 .action-btns{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap}
 .small-btn{padding:8px 12px;border-radius:100px;border:1px solid rgba(255,0,51,0.4);background:rgba(255,255,255,0.08);color:#fff;font-size:10px;font-weight:600;cursor:pointer}
 .small-btn.love{background:linear-gradient(135deg,#ff0033,#a50022);border:0}
-.small-btn.next{background:rgba(255,255,255,0.15)}
 .dev{margin-top:8px;font-size:8px;letter-spacing:2.5px;color:rgba(255,255,255,0.4)}.dev b{color:#ff2a5a}
 .overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 0%, #5a1020 0%, #1a0005 60%, #000 90%);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;transition:0.5s}
 .overlay.hide{opacity:0;pointer-events:none;transform:scale(1.1)}
@@ -43,18 +41,11 @@ h1{font-size:24px;color:#fff;font-weight:800;margin:12px 0 6px;min-height:32px} 
 .modal-box{width:100%;max-width:360px;background:#121212;border:1.5px solid #ff0033;border-radius:24px;padding:22px;position:relative;text-align:left;animation:pop 0.4s;max-height:85vh;overflow-y:auto}
 @keyframes pop{from{transform:scale(0.5) rotate(-5deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
 .close{position:absolute;top:12px;right:14px;font-size:20px;color:#888;cursor:pointer}
-.envelope{font-size:60px;text-align:center;animation:envOpen 0.8s ease}
-@keyframes envOpen{0%{transform:scale(0) rotateY(90deg)} 100%{transform:scale(1) rotateY(0)}}
-.bigLove{font-size:42px;text-align:center;animation:bigPop 1s infinite alternate}
-@keyframes bigPop{from{transform:scale(1)} to{transform:scale(1.2)}}
-.sparkle{position:fixed;pointer-events:none;font-size:16px;animation:sparkle 1s forwards;z-index:1000}
-@keyframes sparkle{0%{transform:scale(0) translateY(0);opacity:1} 100%{transform:scale(1.5) translateY(-30px);opacity:0}}
 </style>
 </head>
 <body>
 <canvas id="starsCanvas"></canvas>
 <canvas id="fireworksCanvas"></canvas>
-
 <div class="overlay" id="lockScreen">
   <div class="lock-box">
     <div style="font-size:50px">🔒❤️</div>
@@ -65,7 +56,6 @@ h1{font-size:24px;color:#fff;font-weight:800;margin:12px 0 6px;min-height:32px} 
     <p id="lockError" style="color:#ff2a5a;font-size:11px;margin-top:10px;display:none">Wrong name my queen, try again 🥺</p>
   </div>
 </div>
-
 <div class="card" id="card">
 <div class="top-logo" onclick="openAbout()">S</div>
 <div class="logo">🖤❤️</div>
@@ -77,162 +67,51 @@ h1{font-size:24px;color:#fff;font-weight:800;margin:12px 0 6px;min-height:32px} 
 </div>
 <div class="dev">DEVELOP BY <b>SAMAMA</b></div>
 </div>
-
-<div id="aboutModal" onclick="closeAbout()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeAbout()">✕</div><h3 style="color:#ff2a5a">ABOUT 🖤❤️</h3><p style="color:#fff;font-size:13px;line-height:1.7"><b>For My Pari G</b><br>My stars, my moon, my everything.<br>Made with 🖤 by Samama</p></div></div>
-
-<div id="letterModal" onclick="closeLetter()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeLetter()">✕</div><div class="envelope">💌</div><h3 style="color:#ff2a5a;text-align:center;margin-top:10px">MY LOVE LETTER</h3><p style="color:#fff;font-size:13px;line-height:1.8;margin-top:10px">Meri Pyaari Pari G,<br><br>Jab se tum meri zindagi me ayi ho, har raat sitaron me tumhara naam dikhta hai. Tum meri subah ho, meri shaam ho.<br><br>Tum meri Pari G ho, meri Queen ho.<br><br>Kya tum hamesha ke liye meri banogi?<br><br><b style="color:#ff8a9a">Hamesha Tumhara,<br>Samama 🖤</b></p></div></div>
-
-<div id="surpriseModal" onclick="closeSurprise()"><div class="modal-box" style="text-align:center" onclick="event.stopPropagation()"><div class="close" onclick="closeSurprise()">✕</div><div class="bigLove">💖 PARI G 💖</div><h2 style="color:#fff;margin-top:12px">I LOVE YOU MORE THAN STARS!</h2><p style="color:#ff8a9a;margin-top:10px;font-family:'Great Vibes',cursive;font-size:28px">My Forever Queen</p><div style="margin-top:15px;font-size:40px">🌙✨🖤✨🌙</div></div></div>
-
-<audio id="bgMusic" loop src="music.mp3"></audio>
-
+<div id="aboutModal" onclick="closeAbout()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeAbout()">✕</div><h3 style="color:#ff2a5a">ABOUT 🖤❤️</h3><p style="color:#fff;font-size:13px;line-height:1.7"><b>For My Pari G</b><br>Made with 🖤 by Samama</p></div></div>
+<div id="letterModal" onclick="closeLetter()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeLetter()">✕</div><div style="font-size:60px;text-align:center">💌</div><h3 style="color:#ff2a5a;text-align:center;margin-top:10px">MY LOVE LETTER</h3><p style="color:#fff;font-size:13px;line-height:1.8;margin-top:10px">Meri Pyaari Pari G,<br><br>Tum meri duniya ho. Kya tum hamesha ke liye meri banogi?<br><br><b style="color:#ff8a9a">Samama 🖤</b></p></div></div>
+<div id="surpriseModal" onclick="closeSurprise()"><div class="modal-box" style="text-align:center" onclick="event.stopPropagation()"><div class="close" onclick="closeSurprise()">✕</div><div style="font-size:42px">💖 PARI G 💖</div><h2 style="color:#fff;margin-top:12px">I LOVE YOU!</h2></div></div>
+<audio id="bgMusic" loop></audio>
 <script>
-// STARS - PARI G name in stars
-const starsCanvas = document.getElementById('starsCanvas');
-const sCtx = starsCanvas.getContext('2d');
-function resizeStars(){starsCanvas.width=innerWidth; starsCanvas.height=innerHeight}
-resizeStars(); window.addEventListener('resize',resizeStars);
-let stars=[];
-for(let i=0;i<120;i++) stars.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5,blink:Math.random()});
-function drawStars(){
-  sCtx.clearRect(0,0,starsCanvas.width,starsCanvas.height);
-  stars.forEach(s=>{
-    s.blink+=0.02;
-    sCtx.globalAlpha=0.3+Math.abs(Math.sin(s.blink))*0.7;
-    sCtx.fillStyle='#ff8a9a';
-    sCtx.beginPath(); sCtx.arc(s.x,s.y,s.r,0,Math.PI*2); sCtx.fill();
-  });
-  // Pari G constellation text in stars
-  sCtx.globalAlpha=0.08;
-  sCtx.font='bold 80px Poppins';
-  sCtx.fillStyle='#ff2a5a';
-  sCtx.fillText('PARI G', innerWidth/2-110, innerHeight/2);
-  requestAnimationFrame(drawStars);
-}
-drawStars();
-
-// TYPING EFFECT
-function typeText(el, text, speed=45, cb){
-  let i=0; el.innerHTML='';
-  let timer=setInterval(()=>{
-    el.innerHTML+=text[i];
-    i++;
-    if(i>=text.length){clearInterval(timer); if(cb) cb();}
-  },speed);
-}
-typeText(document.getElementById('typingTitle'), 'Will You Be Mine Forever?', 50, ()=>{
-  typeText(document.getElementById('typingSub'), 'My Queen Pari G, you are my everything!', 30);
-});
-
-// FIREWORKS
-const fwCanvas = document.getElementById('fireworksCanvas');
-const fwCtx = fwCanvas.getContext('2d');
-function resizeFW(){fwCanvas.width=innerWidth; fwCanvas.height=innerHeight}
-resizeFW();
-let particles=[];
-function createFirework(x,y){
-  for(let i=0;i<35;i++){
-    particles.push({x,y,vx:(Math.random()-0.5)*8,vy:(Math.random()-0.5)*8,life:1,color:`hsl(${Math.random()*20+340},100%,60%)`});
-  }
-}
-function animateFW(){
-  fwCtx.fillStyle='rgba(0,0,0,0.15)'; fwCtx.fillRect(0,0,fwCanvas.width,fwCanvas.height);
-  particles.forEach((p,i)=>{
-    p.x+=p.vx; p.y+=p.vy; p.vy+=0.08; p.life-=0.015;
-    fwCtx.globalAlpha=p.life;
-    fwCtx.fillStyle=p.color;
-    fwCtx.beginPath(); fwCtx.arc(p.x,p.y,3,0,Math.PI*2); fwCtx.fill();
-    if(p.life<=0) particles.splice(i,1);
-  });
-  if(fwCanvas.style.display!=='none') requestAnimationFrame(animateFW);
-}
-function startFireworks(){
-  fwCanvas.style.display='block';
-  fwCtx.clearRect(0,0,fwCanvas.width,fwCanvas.height);
-  animateFW();
-  let interval=setInterval(()=>{createFirework(Math.random()*innerWidth, Math.random()*innerHeight*0.6)},350);
-  setTimeout(()=>{clearInterval(interval); setTimeout(()=>fwCanvas.style.display='none',2000)},4500);
-}
-
-// MODALS
-function openAbout(){document.getElementById('aboutModal').classList.add('show')}
-function closeAbout(){document.getElementById('aboutModal').classList.remove('show')}
-function openLetter(){document.getElementById('letterModal').classList.add('show')}
-function closeLetter(){document.getElementById('letterModal').classList.remove('show')}
-function openSurprise(){document.getElementById('surpriseModal').classList.add('show'); startFireworks()}
-function closeSurprise(){document.getElementById('surpriseModal').classList.remove('show')}
-
-function unlock(){
-  let v=document.getElementById('nameInput').value.toLowerCase().trim();
-  if(v.includes('pari')){
-    document.getElementById('lockScreen').classList.add('hide');
-    setTimeout(()=>document.getElementById('lockScreen').style.display='none',500);
-  } else {
-    document.getElementById('lockError').style.display='block';
-  }
-}
-document.getElementById('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter') unlock()});
-const noBtn=document.getElementById('no'); const area=document.getElementById('area');
+const starsCanvas=document.getElementById('starsCanvas');const sCtx=starsCanvas.getContext('2d');
+function resizeStars(){starsCanvas.width=innerWidth;starsCanvas.height=innerHeight}resizeStars();addEventListener('resize',resizeStars);
+let stars=[];for(let i=0;i<120;i++)stars.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5,blink:Math.random()});
+(function drawStars(){sCtx.clearRect(0,0,starsCanvas.width,starsCanvas.height);stars.forEach(s=>{s.blink+=0.02;sCtx.globalAlpha=0.3+Math.abs(Math.sin(s.blink))*0.7;sCtx.fillStyle='#ff8a9a';sCtx.beginPath();sCtx.arc(s.x,s.y,s.r,0,Math.PI*2);sCtx.fill();});sCtx.globalAlpha=0.08;sCtx.font='bold 80px Poppins';sCtx.fillStyle='#ff2a5a';sCtx.fillText('PARI G',innerWidth/2-110,innerHeight/2);requestAnimationFrame(drawStars);})();
+function typeText(el,text,speed=45,cb){let i=0;el.innerHTML='';let t=setInterval(()=>{el.innerHTML+=text[i];i++;if(i>=text.length){clearInterval(t);if(cb)cb();}},speed);}
+typeText(document.getElementById('typingTitle'),'Will You Be Mine Forever?',50,()=>{typeText(document.getElementById('typingSub'),'My Queen Pari G, you are my everything!',30);});
+const fwCanvas=document.getElementById('fireworksCanvas');const fwCtx=fwCanvas.getContext('2d');function resizeFW(){fwCanvas.width=innerWidth;fwCanvas.height=innerHeight}resizeFW();let particles=[];function createFirework(x,y){for(let i=0;i<35;i++)particles.push({x,y,vx:(Math.random()-0.5)*8,vy:(Math.random()-0.5)*8,life:1,color:`hsl(${Math.random()*20+340},100%,60%)`});}function animateFW(){fwCtx.fillStyle='rgba(0,0,0,0.15)';fwCtx.fillRect(0,0,fwCanvas.width,fwCanvas.height);particles.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.08;p.life-=0.015;fwCtx.globalAlpha=p.life;fwCtx.fillStyle=p.color;fwCtx.beginPath();fwCtx.arc(p.x,p.y,3,0,Math.PI*2);fwCtx.fill();if(p.life<=0)particles.splice(i,1);});if(fwCanvas.style.display!=='none')requestAnimationFrame(animateFW);}function startFireworks(){fwCanvas.style.display='block';fwCtx.clearRect(0,0,fwCanvas.width,fwCanvas.height);animateFW();let inter=setInterval(()=>{createFirework(Math.random()*innerWidth,Math.random()*innerHeight*0.6)},350);setTimeout(()=>{clearInterval(inter);setTimeout(()=>fwCanvas.style.display='none',2000)},4500);}
+function openAbout(){document.getElementById('aboutModal').classList.add('show')}function closeAbout(){document.getElementById('aboutModal').classList.remove('show')}function openLetter(){document.getElementById('letterModal').classList.add('show')}function closeLetter(){document.getElementById('letterModal').classList.remove('show')}function openSurprise(){document.getElementById('surpriseModal').classList.add('show');startFireworks()}function closeSurprise(){document.getElementById('surpriseModal').classList.remove('show')}
+function unlock(){let v=document.getElementById('nameInput').value.toLowerCase().trim();if(v.includes('pari')){document.getElementById('lockScreen').classList.add('hide');setTimeout(()=>document.getElementById('lockScreen').style.display='none',500);}else{document.getElementById('lockError').style.display='block';}}
+document.getElementById('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+const noBtn=document.getElementById('no');const area=document.getElementById('area');
 let texts=["No 🙈","Are you sure? 😜","Pakka? 🤭","Socho! 😏","Hehe 😂","Catch me! 🏃‍♀️"];
-function runAway(){
-  const maxX=area.clientWidth-90; const maxY=area.clientHeight-55;
-  noBtn.style.left=Math.random()*maxX+'px'; noBtn.style.top=Math.random()*maxY+'px';
-  noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];
-}
-noBtn.addEventListener('mouseenter',runAway);
-noBtn.addEventListener('touchstart',(e)=>{e.preventDefault();runAway();});
-noBtn.addEventListener('click',(e)=>{e.preventDefault();runAway();});
-setInterval(()=>{
-  let h=document.createElement('div'); h.className='heart';
-  h.innerText=['🖤','❤️','💋','✨'][Math.floor(Math.random()*4)];
-  h.style.left=Math.random()*100+'vw'; h.style.fontSize=(18+Math.random()*18)+'px';
-  h.style.animationDuration=(2+Math.random()*2)+'s';
-  document.body.appendChild(h); setTimeout(()=>h.remove(),4000);
-},200);
-
-// GALLERY with CAPTIONS
-let photos = [{src:"Screenshot_20261015-160153.jpg", cap:"My Cute Pari G 😍 - My Moon"}];
-let currentIndex = -1; let showingVideo = true;
+function runAway(){const maxX=area.clientWidth-90;const maxY=area.clientHeight-55;noBtn.style.left=Math.random()*maxX+'px';noBtn.style.top=Math.random()*maxY+'px';noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];}
+noBtn.addEventListener('mouseenter',runAway);noBtn.addEventListener('touchstart',(e)=>{e.preventDefault();runAway();});noBtn.addEventListener('click',(e)=>{e.preventDefault();runAway();});
+setInterval(()=>{let h=document.createElement('div');h.className='heart';h.innerText=['🖤','❤️','💋','✨'][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+'vw';h.style.fontSize=(18+Math.random()*18)+'px';h.style.animationDuration=(2+Math.random()*2)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),4000);},200);
+let photos=[{src:"Screenshot_20261015-160153.jpg",cap:"My Cute Pari G 😍 - My Moon"}];
+let currentIndex=-1;let showingVideo=true;
 function toggleMedia(){
-  let container = document.getElementById('mediaContainer');
-  let capEl = document.getElementById('photoCaption');
+  let container=document.getElementById('mediaContainer');
+  let capEl=document.getElementById('photoCaption');
   if(showingVideo){
-    currentIndex = 0;
-    container.innerHTML = `<img id="myPhoto" class="media-box" src="${photos[currentIndex].src}" style="object-fit:contain;background:#000">`;
-    capEl.innerText = photos[currentIndex].cap;
-    document.getElementById('nextBtn').innerText = "🎥 Video";
-    showingVideo = false;
+    currentIndex=0;
+    container.innerHTML=`<img id="myPhoto" class="media-box" src="${photos[currentIndex].src}" style="object-fit:contain;background:#000" onerror="this.style.display='none'">`;
+    if(capEl)capEl.innerText=photos[currentIndex].cap;
+    document.getElementById('nextBtn').innerText="🎥 Video";showingVideo=false;
   } else {
-    if(currentIndex < photos.length - 1){
-      currentIndex++;
-      document.getElementById('myPhoto').src = photos[currentIndex].src;
-      capEl.innerText = photos[currentIndex].cap;
-    } else {
-      container.innerHTML = `<video id="myVideo" class="media-box" src="video.mp4?v=10" autoplay loop playsinline controls></video>`;
-      setTimeout(()=>{ const v=document.getElementById('myVideo'); if(v){v.muted=false; v.volume=1; v.play().catch(()=>{})} },200);
-      capEl.innerText = "Our beautiful moment ❤️";
-      document.getElementById('nextBtn').innerText = "🖼️ Photo";
-      showingVideo = true; currentIndex = -1;
-    }
+    container.innerHTML=`<video id="myVideo" class="media-box" src="video.mp4" autoplay loop playsinline controls onerror="this.poster='${photos[0].src}'"></video>`;
+    setTimeout(()=>{const v=document.getElementById('myVideo');if(v){v.muted=false;v.volume=1;v.play().catch(()=>{})}},200);
+    if(capEl)capEl.innerText="Our beautiful moment ❤️";
+    document.getElementById('nextBtn').innerText="🖼️ Photo";showingVideo=true;currentIndex=-1;
   }
 }
-let startDate = new Date('2025-12-23');
-function updateCounter(){
-  let diff = new Date() - startDate;
-  let days = Math.floor(diff / (1000*60*60*24));
-  let el=document.getElementById('dayCounter');
-  if(el) el.innerText=`Together for ${days} days & forever more 💖`;
-}
-setInterval(updateCounter,1000);
-
+let startDate=new Date('2025-12-23');function updateCounter(){let diff=new Date()-startDate;let days=Math.floor(diff/(1000*60*60*24));let el=document.getElementById('dayCounter');if(el)el.innerText=`Together for ${days} days & forever more 💖`;}setInterval(updateCounter,1000);
 document.getElementById('yes').onclick=()=>{
- let music=document.getElementById('bgMusic');
- music.volume=0.7; music.play().catch(()=>{});
+ let music=document.getElementById('bgMusic');try{music.volume=0.7;music.play().catch(()=>{});}catch(e){}
  startFireworks();
  document.getElementById('card').innerHTML=`
   <div class="top-logo" onclick="openAbout()">S</div>
   <div style="font-size:50px">😍🖤</div>
-  <div id="mediaContainer"><video id="myVideo" class="media-box" src="video.mp4?v=10" autoplay loop playsinline controls></video></div>
+  <div id="mediaContainer"><video id="myVideo" class="media-box" src="video.mp4" autoplay loop playsinline controls onerror="this.style.display='none'"></video></div>
   <div class="caption" id="photoCaption">Our beautiful moment ❤️</div>
   <div class="final">Yayy! I Knew You'd Say <span>YES</span>, My Pari G! 🥹❤️</div>
   <div class="final2">My Pari G I love you forever</div>
@@ -246,14 +125,9 @@ document.getElementById('yes').onclick=()=>{
   </div>
   <div class="dev">DEVELOP BY <b>SAMAMA</b></div>
  `;
- setTimeout(()=>{ const v=document.getElementById('myVideo'); if(v){v.muted=false; v.volume=1; v.play().catch(()=>{});} updateCounter(); },300);
+ setTimeout(()=>{const v=document.getElementById('myVideo');if(v){v.muted=false;v.volume=1;v.play().catch(()=>{});}updateCounter();},300);
 };
-
-function shareWA(){
-  let num="923281316930";
-  let msg=encodeURIComponent("I Said YES! 🥹❤️ I love you forever my Samama 🖤 - Your Pari G");
-  window.open(`https://wa.me/${num}?text=${msg}`,'_blank');
-}
+function shareWA(){let num="923281316930";let msg=encodeURIComponent("I Said YES! 🥹❤️ I love you forever my Samama 🖤 - Your Pari G");window.open(`https://wa.me/${num}?text=${msg}`,'_blank');}
 </script>
 </body>
 </html>
