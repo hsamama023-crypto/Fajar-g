@@ -3,167 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Proposal for Pari G - by Samama</title>
+<title>For My Pari G - by Samama</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&family=Great+Vibes&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 0%, #5a1020 0%, #1a0005 40%, #000 80%);padding:12px;overflow:hidden}
-.card{width:100%;max-width:390px;background:rgba(255,255,255,0.08);backdrop-filter:blur(18px);border:1.5px solid rgba(255,0,51,0.4);border-radius:32px;padding:28px 20px 18px;text-align:center;box-shadow:0 0 60px rgba(255,0,51,0.35);position:relative;animation:cardIn 0.6s ease}
-@keyframes cardIn{from{transform:scale(0.9) translateY(20px);opacity:0} to{transform:scale(1) translateY(0);opacity:1}}
-.top-logo{position:absolute;top:14px;right:14px;width:36px;height:36px;background:linear-gradient(135deg,rgba(0,0,0,0.6),rgba(255,0,51,0.2));border:1px solid rgba(255,0,51,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ff2a5a;font-weight:800;font-size:14px;cursor:pointer;z-index:10}
-.logo{font-size:58px;animation:beat 1.2s infinite} @keyframes beat{50%{transform:scale(1.18)}}
-h1{font-size:26px;color:#fff;font-weight:800;margin:12px 0 6px} h1 span{background:linear-gradient(90deg,#ff2a5a,#ff8a9a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.sub{color:#e0b0b8;font-size:13.5px;margin-bottom:18px}
-.btns{height:125px;position:relative;display:flex;justify-content:center;align-items:center;gap:14px}
-.btn{border:0;padding:14px 34px;border-radius:100px;font-weight:800;font-size:15.5px;cursor:pointer}
-.yes{background:linear-gradient(135deg,#ff0033,#ff2a5a);color:#fff;box-shadow:0 8px 25px rgba(255,0,51,0.6);z-index:5;animation:yesPulse 2s infinite}
-@keyframes yesPulse{50%{box-shadow:0 12px 35px rgba(255,0,51,0.8)}}
-.no{background:rgba(20,20,20,0.9);border:1px solid #333;color:#888;position:absolute;left:190px;top:45px}
+body{height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;background:#000;padding:12px;overflow:hidden}
+#starsCanvas{position:fixed;inset:0;z-index:0}
+#fireworksCanvas{position:fixed;inset:0;z-index:50;pointer-events:none;display:none}
+.bg-glow{position:fixed;width:700px;height:700px;background:radial-gradient(circle, rgba(255,0,51,0.25) 0%, transparent 70%);top:-200px;left:50%;transform:translateX(-50%);z-index:0;filter:blur(40px)}
+
+/* PREMIUM CARD */
+.card{width:100%;max-width:400px;background:linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));backdrop-filter:blur(25px);border:1px solid rgba(255,255,255,0.15);border-radius:36px;padding:32px 22px 20px;text-align:center;box-shadow:0 0 0 1px rgba(255,0,51,0.3), 0 20px 80px rgba(255,0,51,0.3), inset 0 1px 0 rgba(255,255,255,0.2);position:relative;z-index:2;animation:cardIn 0.8s cubic-bezier(.16,1,.3,1)}
+@keyframes cardIn{from{transform:translateY(40px) scale(0.92);opacity:0} to{transform:translateY(0) scale(1);opacity:1}}
+.top-badge{position:absolute;top:16px;right:16px;background:rgba(255,0,51,0.12);border:1px solid rgba(255,0,51,0.4);padding:6px 12px;border-radius:100px;font-size:9px;letter-spacing:2px;color:#ff8a9a;font-weight:700}
+.premium-ring{width:86px;height:86px;margin:0 auto;border-radius:50%;background:conic-gradient(from 0deg, #ff0033, #ff8a9a, #ff0033);padding:2px;animation:rotate 3s linear infinite}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.premium-ring-inner{width:100%;height:100%;border-radius:50%;background:#0e0003;display:flex;align-items:center;justify-content:center;font-size:42px}
+h1{font-size:28px;color:#fff;font-weight:800;margin:18px 0 6px;letter-spacing:-0.5px;line-height:1.1}
+h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:rgba(255,255,255,0.6);font-size:13px;font-weight:300;letter-spacing:0.3px;margin-bottom:22px}
+.sub b{color:#ffb3c1;font-weight:600}
+
+/* PREMIUM BUTTONS */
+.btns{height:160px;position:relative;border-radius:24px;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);overflow:hidden}
+.btn{border:0;padding:15px 38px;border-radius:100px;font-weight:800;font-size:16px;cursor:pointer;transition:all 0.3s ease;position:absolute;top:50%;transform:translateY(-50%)}
+.yes{left:22px;background:linear-gradient(135deg,#ff0033 0%, #ff2a5a 100%);color:#fff;box-shadow:0 0 0 4px rgba(255,0,51,0.15), 0 10px 30px rgba(255,0,51,0.5);letter-spacing:0.5px}
+.yes:active{transform:translateY(-50%) scale(0.95)}
+.no{right:22px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);backdrop-filter:blur(10px);font-size:14px;padding:13px 26px}
+.corner-0{top:16px!important; left:16px!important; right:auto; bottom:auto; transform:none!important}
+.corner-1{top:16px!important; right:16px!important; left:auto; bottom:auto; transform:none!important}
+.corner-2{bottom:16px!important; right:16px!important; left:auto; top:auto; transform:none!important}
+.corner-3{bottom:16px!important; left:16px!important; right:auto; top:auto; transform:none!important}
 .heart{position:fixed;top:-5%;animation:fall linear forwards;pointer-events:none;z-index:999} @keyframes fall{to{top:110vh}}
-.media-box{width:100%;max-height:38vh;object-fit:cover;border-radius:20px;border:2px solid #ff2a5a;box-shadow:0 0 30px rgba(255,0,51,0.7);margin:8px auto;display:block;background:#000}
-.final{font-size:18px;font-weight:800;color:#fff;margin-top:8px} .final span{color:#ff2a5a}
-.final2{font-family:'Great Vibes',cursive;font-size:32px;color:#ffb3c1;margin-top:4px}
-.counter{margin-top:8px;font-size:11px;color:#ff8a9a;letter-spacing:1px;background:rgba(255,0,51,0.1);padding:6px 12px;border-radius:100px;display:inline-block;border:1px solid rgba(255,0,51,0.2)}
-.action-btns{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
-.small-btn{padding:9px 14px;border-radius:100px;border:1px solid rgba(255,0,51,0.4);background:rgba(255,255,255,0.08);color:#fff;font-size:11px;font-weight:600;cursor:pointer;backdrop-filter:blur(10px)}
+.media-box{width:100%;max-height:30vh;object-fit:contain;border-radius:20px;border:1.5px solid #ff2a5a;box-shadow:0 0 30px rgba(255,0,51,0.5);margin:8px auto;display:block;background:#000}
+.final{font-size:17px;font-weight:800;color:#fff;margin-top:8px}.final span{color:#ff2a5a}
+.final2{font-family:'Great Vibes',cursive;font-size:32px;color:#ffb3c1}
+.counter{margin-top:6px;font-size:10px;color:#ff8a9a;background:rgba(255,0,51,0.1);padding:5px 12px;border-radius:100px;display:inline-block;border:1px solid rgba(255,0,51,0.2)}
+.caption{font-size:11px;color:#ffccd5;margin-top:4px;font-style:italic}
+.lyrics{font-size:10px;color:rgba(255,255,255,0.5);margin-top:6px;letter-spacing:1px}
+.action-btns{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.small-btn{padding:8px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:#fff;font-size:10px;font-weight:600;cursor:pointer}
 .small-btn.love{background:linear-gradient(135deg,#ff0033,#a50022);border:0}
-.small-btn.next{background:rgba(255,255,255,0.15);border-color:#fff}
-.dev{margin-top:10px;font-size:9px;letter-spacing:2.5px;color:rgba(255,255,255,0.4)} .dev b{color:#ff2a5a}
-.overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 0%, #5a1020 0%, #1a0005 60%, #000 90%);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;transition:0.5s}
-.overlay.hide{opacity:0;pointer-events:none;transform:scale(1.1)}
-.lock-box{width:100%;max-width:360px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1.5px solid rgba(255,0,51,0.4);border-radius:28px;padding:30px 22px;text-align:center;box-shadow:0 0 60px rgba(255,0,51,0.3)}
-.lock-box input{width:100%;padding:14px 18px;border-radius:100px;border:1.5px solid rgba(255,0,51,0.4);background:rgba(0,0,0,0.5);color:#fff;outline:none;text-align:center;font-size:14px;margin:16px 0}
-#aboutModal, #letterModal{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
-#aboutModal.show, #letterModal.show{display:flex}
-.modal-box{width:100%;max-width:360px;background:#121212;border:1.5px solid #ff0033;border-radius:24px;padding:22px;position:relative;text-align:left;animation:pop 0.3s;max-height:85vh;overflow-y:auto}
-@keyframes pop{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
+.dev{margin-top:14px;font-size:8px;letter-spacing:3px;color:rgba(255,255,255,0.35)}.dev b{color:#ff2a5a}
+.overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 0%, #4a0a18 0%, #000 70%);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;transition:0.6s cubic-bezier(.16,1,.3,1)}
+.overlay.hide{opacity:0;pointer-events:none;transform:scale(1.08)}
+.lock-box{width:100%;max-width:360px;background:linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.15);border-radius:32px;padding:34px 24px;text-align:center;box-shadow:0 0 0 1px rgba(255,0,51,0.2), 0 30px 90px rgba(255,0,51,0.3)}
+.lock-box input{width:100%;padding:15px 18px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.4);color:#fff;outline:none;text-align:center;font-size:14px;margin:18px 0}
+#aboutModal, #letterModal, #surpriseModal{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
+#aboutModal.show, #letterModal.show, #surpriseModal.show{display:flex}
+.modal-box{width:100%;max-width:360px;background:#121212;border:1px solid #ff0033;border-radius:24px;padding:22px;position:relative;animation:pop 0.4s;max-height:85vh;overflow-y:auto}
+@keyframes pop{from{transform:scale(0.85);opacity:0} to{transform:scale(1);opacity:1}}
 .close{position:absolute;top:12px;right:14px;font-size:20px;color:#888;cursor:pointer}
-.sparkle{position:fixed;pointer-events:none;font-size:16px;animation:sparkle 1s forwards;z-index:1000}
-@keyframes sparkle{0%{transform:scale(0) translateY(0);opacity:1} 100%{transform:scale(1.5) translateY(-30px);opacity:0}}
 </style>
 </head>
 <body>
+<div class="bg-glow"></div>
+<canvas id="starsCanvas"></canvas>
+<canvas id="fireworksCanvas"></canvas>
+
 <div class="overlay" id="lockScreen">
   <div class="lock-box">
-    <div style="font-size:50px">🔒❤️</div>
-    <h2 style="color:#fff;margin-top:10px;font-size:22px">Only For My <span style="color:#ff2a5a">Pari G</span></h2>
-    <p style="color:#c9a0a8;font-size:12px;margin-top:6px">Enter your sweet name to unlock</p>
+    <div style="font-size:48px">🔒</div>
+    <h2 style="color:#fff;margin-top:10px;font-size:22px;font-weight:800">Only For My <span style="color:#ff2a5a">Pari G</span></h2>
+    <p style="color:rgba(255,255,255,0.5);font-size:11px;margin-top:6px;letter-spacing:1px">PRIVATE • ENCRYPTED • PREMIUM</p>
     <input type="text" id="nameInput" placeholder="Type Pari G...">
-    <button class="btn yes" style="width:100%" onclick="unlock()">Unlock My Heart 💘</button>
-    <p id="lockError" style="color:#ff2a5a;font-size:11px;margin-top:10px;display:none">Wrong name my queen, try again 🥺</p>
+    <button class="btn yes" style="position:static;transform:none;width:100%;margin-top:4px" onclick="unlock()">Unlock My Heart 💘</button>
+    <p id="lockError" style="color:#ff2a5a;font-size:11px;margin-top:10px;display:none">Wrong name my queen 🥺</p>
   </div>
 </div>
+
 <div class="card" id="card">
-<div class="top-logo" onclick="openAbout()">S</div>
-<div class="logo">🖤❤️</div>
-<h1>Will You Be Mine <span>Forever?</span></h1>
+<div class="top-badge">PREMIUM FOR PARI G</div>
+<div class="premium-ring"><div class="premium-ring-inner">🖤</div></div>
+<h1 id="typingTitle">Will You Be Mine <span>Forever?</span></h1>
 <p class="sub">My Queen <b>Pari G</b>, you are my everything!</p>
 <div class="btns" id="area">
 <button class="btn yes" id="yes">YES! 🥰</button>
 <button class="btn no" id="no">No 🙈</button>
 </div>
-<div class="dev">DEVELOP BY <b>SAMAMA</b></div>
+<div class="dev">CRAFTED BY <b>SAMAMA</b></div>
 </div>
-<div id="aboutModal" onclick="closeAbout()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeAbout()">✕</div><h3 style="color:#ff2a5a">ABOUT 🖤❤️</h3><p style="color:#fff;font-size:13px;line-height:1.7"><b>For My Pari G</b><br>Developed by Samama with all my love.</p></div></div>
-<div id="letterModal" onclick="closeLetter()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeLetter()">✕</div><h3 style="color:#ff2a5a">MY LOVE LETTER 💌</h3><p style="color:#fff;font-size:13px;line-height:1.8;margin-top:10px">Meri Pyaari Pari G,<br><br>Jab se tum meri zindagi me ayi ho, har din khubsurat lagta hai. Tum meri subah ho, meri shaam ho, mera har khwab ho.<br><br>Kya tum hamesha ke liye meri banogi?<br><br><b style="color:#ff8a9a">Hamesha Tumhara,<br>Samama 🖤</b></p></div></div>
+
+<div id="aboutModal" onclick="closeAbout()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeAbout()">✕</div><h3 style="color:#ff2a5a">ABOUT 🖤</h3><p style="color:#fff;font-size:13px;line-height:1.7;margin-top:8px">For My Pari G - Premium Edition<br>Made with 🖤 by Samama</p></div></div>
+<div id="letterModal" onclick="closeLetter()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeLetter()">✕</div><div style="font-size:50px;text-align:center">💌</div><h3 style="color:#ff2a5a;text-align:center;margin-top:8px">MY LOVE LETTER</h3><p style="color:#fff;font-size:13px;line-height:1.8;margin-top:10px">Meri Pyaari Pari G,<br><br>Tum meri duniya ho. Kya tum hamesha ke liye meri banogi?<br><br><b style="color:#ff8a9a">Samama 🖤</b></p></div></div>
+<div id="surpriseModal" onclick="closeSurprise()"><div class="modal-box" style="text-align:center" onclick="event.stopPropagation()"><div class="close" onclick="closeSurprise()">✕</div><div style="font-size:50px">💖 PARI G 💖</div><h2 style="color:#fff;margin-top:10px">I LOVE YOU!</h2></div></div>
+
 <audio id="bgMusic" loop src="music.mp3"></audio>
+
 <script>
+const starsCanvas = document.getElementById('starsCanvas');
+const sCtx = starsCanvas.getContext('2d');
+function resizeStars(){starsCanvas.width=innerWidth; starsCanvas.height=innerHeight}
+resizeStars(); addEventListener('resize',resizeStars);
+let stars=[]; for(let i=0;i<100;i++) stars.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.3,blink:Math.random()*10});
+(function drawStars(){
+  sCtx.clearRect(0,0,starsCanvas.width,starsCanvas.height);
+  stars.forEach(s=>{s.blink+=0.02; sCtx.globalAlpha=0.3+Math.abs(Math.sin(s.blink))*0.7; sCtx.fillStyle='#ff8a9a'; sCtx.beginPath(); sCtx.arc(s.x,s.y,s.r,0,Math.PI*2); sCtx.fill();});
+  sCtx.globalAlpha=0.06; sCtx.font='bold 70px Poppins'; sCtx.fillStyle='#ff2a5a'; sCtx.fillText('PARI G', innerWidth/2-95, innerHeight/2);
+  requestAnimationFrame(drawStars);
+})();
+
+const fwCanvas = document.getElementById('fireworksCanvas'); const fwCtx = fwCanvas.getContext('2d');
+function resizeFW(){fwCanvas.width=innerWidth; fwCanvas.height=innerHeight} resizeFW();
+let particles=[]; function createFirework(x,y){for(let i=0;i<30;i++) particles.push({x,y,vx:(Math.random()-0.5)*8,vy:(Math.random()-0.5)*8,life:1,color:`hsl(${340+Math.random()*20},100%,60%)`});}
+function animateFW(){fwCtx.fillStyle='rgba(0,0,0,0.18)'; fwCtx.fillRect(0,0,fwCanvas.width,fwCanvas.height); particles.forEach((p,i)=>{p.x+=p.vx; p.y+=p.vy; p.vy+=0.07; p.life-=0.015; fwCtx.globalAlpha=p.life; fwCtx.fillStyle=p.color; fwCtx.beginPath(); fwCtx.arc(p.x,p.y,3,0,Math.PI*2); fwCtx.fill(); if(p.life<=0) particles.splice(i,1);}); if(fwCanvas.style.display!=='none') requestAnimationFrame(animateFW);}
+function startFireworks(){fwCanvas.style.display='block'; fwCtx.clearRect(0,0,fwCanvas.width,fwCanvas.height); animateFW(); let int=setInterval(()=>createFirework(Math.random()*innerWidth, Math.random()*innerHeight*0.5),300); setTimeout(()=>{clearInterval(int); setTimeout(()=>fwCanvas.style.display='none',2000)},4000);}
+
 function openAbout(){document.getElementById('aboutModal').classList.add('show')}
 function closeAbout(){document.getElementById('aboutModal').classList.remove('show')}
 function openLetter(){document.getElementById('letterModal').classList.add('show')}
 function closeLetter(){document.getElementById('letterModal').classList.remove('show')}
-function unlock(){
-  let v=document.getElementById('nameInput').value.toLowerCase().trim();
-  if(v.includes('pari')){
-    document.getElementById('lockScreen').classList.add('hide');
-    setTimeout(()=>document.getElementById('lockScreen').style.display='none',500);
-  } else {
-    document.getElementById('lockError').style.display='block';
-  }
-}
+function openSurprise(){document.getElementById('surpriseModal').classList.add('show'); startFireworks()}
+function closeSurprise(){document.getElementById('surpriseModal').classList.remove('show')}
+function unlock(){let v=document.getElementById('nameInput').value.toLowerCase().trim(); if(v.includes('pari')){document.getElementById('lockScreen').classList.add('hide'); setTimeout(()=>document.getElementById('lockScreen').style.display='none',600);} else {document.getElementById('lockError').style.display='block';}}
 document.getElementById('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter') unlock()});
-const noBtn=document.getElementById('no'); const area=document.getElementById('area');
-let texts=["No 🙈","Are you sure? 😜","Pakka? 🤭","Socho! 😏","Hehe 😂","Catch me! 🏃‍♀️"];
+
+// PREMIUM CORNER TO CORNER LOGIC
+const noBtn=document.getElementById('no');
+let cornerIndex=0;
+let cornerClasses=["corner-0","corner-1","corner-2","corner-3"];
+let texts=["No 🙈","Pakka? 🤭","Socho 😏","Catch me! 🏃‍♀️","Nope 😜"];
 function runAway(){
-  const maxX=area.clientWidth-90; const maxY=area.clientHeight-55;
-  noBtn.style.left=Math.random()*maxX+'px'; noBtn.style.top=Math.random()*maxY+'px';
-  noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];
+  noBtn.classList.remove(...cornerClasses);
+  cornerIndex=(cornerIndex+1)%4;
+  noBtn.classList.add(cornerClasses[cornerIndex]);
+  noBtn.innerText=texts[cornerIndex];
 }
 noBtn.addEventListener('mouseenter',runAway);
 noBtn.addEventListener('touchstart',(e)=>{e.preventDefault();runAway();});
 noBtn.addEventListener('click',(e)=>{e.preventDefault();runAway();});
-setInterval(()=>{
-  let h=document.createElement('div'); h.className='heart';
-  h.innerText=['🖤','❤️','💋','✨'][Math.floor(Math.random()*4)];
-  h.style.left=Math.random()*100+'vw'; h.style.fontSize=(18+Math.random()*18)+'px';
-  h.style.animationDuration=(2+Math.random()*2)+'s';
-  document.body.appendChild(h); setTimeout(()=>h.remove(),4000);
-},200);
 
-// GALLERY LOGIC
-let photos = ["Screenshot_20261015-160153.jpg"]; // <-- yahan aur naam add kar sakte ho jaise "photo2.jpg"
-let currentIndex = -1; // -1 means video
-let showingVideo = true;
+setInterval(()=>{let h=document.createElement('div'); h.className='heart'; h.innerText=['🖤','❤️','✨'][Math.floor(Math.random()*3)]; h.style.left=Math.random()*100+'vw'; h.style.fontSize=(16+Math.random()*16)+'px'; h.style.animationDuration=(2+Math.random()*2)+'s'; document.body.appendChild(h); setTimeout(()=>h.remove(),4000);},250);
 
+let photos=[{src:"Screenshot_20261015-160153.jpg",cap:"My Cute Pari G 😍 - My Moon"}];
+let currentIndex=-1; let showingVideo=true;
 function toggleMedia(){
-  let container = document.getElementById('mediaContainer');
+  let container=document.getElementById('mediaContainer');
+  let capEl=document.getElementById('photoCaption');
   if(showingVideo){
-    // Video se Photo pe
-    currentIndex = 0;
-    container.innerHTML = `<img id="myPhoto" class="media-box" src="${photos[currentIndex]}" style="object-fit:contain;background:#000">`;
-    document.getElementById('nextBtn').innerText = "🎥 Show Video";
-    showingVideo = false;
+    currentIndex=0;
+    container.innerHTML=`<img id="myPhoto" class="media-box" src="${photos[currentIndex].src}" style="object-fit:contain;background:#000">`;
+    if(capEl) capEl.innerText=photos[currentIndex].cap;
+    document.getElementById('nextBtn').innerText="🎥 Video"; showingVideo=false;
   } else {
-    // Agar aur photos hain to next photo, warna video
-    if(currentIndex < photos.length - 1){
-      currentIndex++;
-      document.getElementById('myPhoto').src = photos[currentIndex];
-      document.getElementById('nextBtn').innerText = currentIndex === photos.length -1 ? "🎥 Show Video" : "➡️ Next Photo";
-    } else {
-      // Wapas Video pe
-      container.innerHTML = `<video id="myVideo" class="media-box" src="video.mp4?v=7" autoplay loop playsinline controls></video>`;
-      setTimeout(()=>{ const v=document.getElementById('myVideo'); if(v){v.muted=false; v.volume=1; v.play().catch(()=>{})} },200);
-      document.getElementById('nextBtn').innerText = "🖼️ Show Photo";
-      showingVideo = true;
-      currentIndex = -1;
-    }
+    container.innerHTML=`<video id="myVideo" class="media-box" src="video.mp4?v=11" autoplay loop playsinline controls></video>`;
+    setTimeout(()=>{const v=document.getElementById('myVideo'); if(v){v.muted=false; v.volume=1; v.play().catch(()=>{})}},200);
+    if(capEl) capEl.innerText="Our beautiful moment ❤️";
+    document.getElementById('nextBtn').innerText="🖼️ Photo"; showingVideo=true; currentIndex=-1;
   }
 }
-
-let startDate = new Date('2025-12-23');
-function updateCounter(){
-  let diff = new Date() - startDate;
-  let days = Math.floor(diff / (1000*60*60*24));
-  let el=document.getElementById('dayCounter');
-  if(el) el.innerText=`Together for ${days} days & forever more 💖`;
-}
+let startDate=new Date('2025-12-23');
+function updateCounter(){let diff=new Date()-startDate; let days=Math.floor(diff/(1000*60*60*24)); let el=document.getElementById('dayCounter'); if(el) el.innerText=`Together ${days} days & forever 💖`;}
 setInterval(updateCounter,1000);
 
 document.getElementById('yes').onclick=()=>{
- let music=document.getElementById('bgMusic');
- music.volume=0.7; music.play().catch(()=>{});
+ let music=document.getElementById('bgMusic'); music.volume=0.7; music.play().catch(()=>{}); startFireworks();
  document.getElementById('card').innerHTML=`
-  <div class="top-logo" onclick="openAbout()">S</div>
-  <div style="font-size:50px">😍🖤</div>
-  <div id="mediaContainer"><video id="myVideo" class="media-box" src="video.mp4?v=7" autoplay loop playsinline controls></video></div>
+  <div class="top-badge">YES! SHE SAID YES!</div>
+  <div style="font-size:46px">😍🖤</div>
+  <div id="mediaContainer"><video id="myVideo" class="media-box" src="video.mp4?v=11" autoplay loop playsinline controls></video></div>
+  <div class="caption" id="photoCaption">Our beautiful moment ❤️</div>
   <div class="final">Yayy! I Knew You'd Say <span>YES</span>, My Pari G! 🥹❤️</div>
-  <div class="final2">My Pari G I love you forever</div>
-  <div class="counter" id="dayCounter">Counting our love...</div>
+  <div class="final2">I love you forever</div>
+  <div class="counter" id="dayCounter"></div>
+  <div class="lyrics">🎵 Tum hi ho meri Pari G 🎵</div>
   <div class="action-btns">
-    <button class="small-btn next" id="nextBtn" onclick="toggleMedia()">🖼️ Show Photo</button>
-    <button class="small-btn love" onclick="openLetter()">💌 My Letter</button>
+    <button class="small-btn" id="nextBtn" onclick="toggleMedia()">🖼️ Photo</button>
+    <button class="small-btn love" onclick="openLetter()">💌 Letter</button>
+    <button class="small-btn" onclick="openSurprise()">✨ Surprise</button>
     <button class="small-btn" onclick="shareWA()">💬 WhatsApp</button>
   </div>
-  <div class="dev">DEVELOP BY <b>SAMAMA</b></div>
+  <div class="dev">CRAFTED BY <b>SAMAMA</b></div>
  `;
- setTimeout(()=>{ const v=document.getElementById('myVideo'); if(v){v.muted=false; v.volume=1; v.play().catch(()=>{});} updateCounter(); },200);
- for(let i=0;i<25;i++){setTimeout(()=>{let h=document.createElement('div');h.className='heart';h.innerText='❤️';h.style.left=Math.random()*100+'vw';h.style.fontSize='22px';h.style.animationDuration='3s';document.body.appendChild(h);setTimeout(()=>h.remove(),3000)},i*80)}
+ setTimeout(()=>{const v=document.getElementById('myVideo'); if(v){v.muted=false; v.volume=1; v.play().catch(()=>{});} updateCounter();},300);
 };
-function shareWA(){
-  let num="923281316930";
-  let msg=encodeURIComponent("I Said YES! 🥹❤️ I love you forever my Samama 🖤 - Your Pari G");
-  window.open(`https://wa.me/${num}?text=${msg}`,'_blank');
-}
+function shareWA(){let num="923281316930"; let msg=encodeURIComponent("I Said YES! 🥹❤️ - Your Pari G"); window.open(`https://wa.me/${num}?text=${msg}`,'_blank');}
 </script>
 </body>
 </html>
