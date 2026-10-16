@@ -24,14 +24,18 @@ h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-cli
 @keyframes pulse{0%,100%{box-shadow:0 8px 25px rgba(255,0,85,0.6)} 50%{box-shadow:0 12px 35px rgba(255,0,85,0.9);transform:scale(1.03)}}
 .no{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);position:absolute;left:180px;top:40px;backdrop-filter:blur(10px);transition:all 0.15s ease-out;z-index:4;white-space:nowrap}
 .heart{position:fixed;top:-5%;animation:fall linear forwards;pointer-events:none;z-index:999} @keyframes fall{to{top:115vh;transform:rotate(360deg)}}
-.final-video{width:100%;max-height:38vh;object-fit:contain;border-radius:22px;border:2px solid #ff0055;box-shadow:0 0 30px rgba(255,0,85,0.6);margin:12px auto;display:block;background:#000}
+.final-video,.final-img{width:100%;max-height:36vh;object-fit:contain;border-radius:22px;border:2px solid #ff0055;box-shadow:0 0 30px rgba(255,0,85,0.6);margin:12px auto;display:block;background:#000}
 .final{font-size:20px;font-weight:800;color:#fff;margin-top:12px}.final span{color:#ff2a5a}
 .final2{font-family:'Great Vibes',cursive;font-size:34px;color:#ff8a9a;margin-top:6px}
 .counter{margin-top:8px;font-size:10px;color:#ff8a9a;background:rgba(255,0,51,0.1);padding:6px 12px;border-radius:100px;display:inline-block;border:1px solid rgba(255,0,51,0.2)}
+.caption{font-size:11px;color:#ffccd5;margin-top:4px;font-style:italic}
+.action-btns{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.small-btn{padding:8px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:#fff;font-size:11px;font-weight:600;cursor:pointer}
+.small-btn.love{background:linear-gradient(135deg,#ff0033,#a50022);border:0}
 .dev{margin-top:16px;font-size:8px;letter-spacing:3px;color:rgba(255,255,255,0.35)}.dev b{color:#ff2a5a}
-#aboutModal{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
-#aboutModal.show{display:flex}
-.modal-box{width:100%;max-width:340px;background:#111;border:1.5px solid #ff0055;border-radius:24px;padding:22px;position:relative;animation:pop 0.3s}
+#aboutModal,#letterModal{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
+#aboutModal.show,#letterModal.show{display:flex}
+.modal-box{width:100%;max-width:340px;background:#111;border:1.5px solid #ff0055;border-radius:24px;padding:22px;position:relative;animation:pop 0.3s;max-height:85vh;overflow-y:auto}
 @keyframes pop{from{transform:scale(0.8);opacity:0} to{transform:scale(1);opacity:1}}
 .close{position:absolute;top:12px;right:14px;font-size:20px;color:#888;cursor:pointer}
 .top-badge{position:absolute;top:14px;left:16px;background:rgba(255,0,51,0.12);border:1px solid rgba(255,0,51,0.3);padding:4px 9px;border-radius:100px;font-size:7px;letter-spacing:1.5px;color:#ff8a9a;font-weight:700}
@@ -41,7 +45,7 @@ h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-cli
 <canvas id="starsCanvas"></canvas>
 <canvas id="fireworksCanvas"></canvas>
 <div class="card" id="card">
-<div class="top-badge">PREMIUM FOR FAJAR G</div>
+<div class="top-badge">Marjan</div>
 <div class="top-logo" onclick="openAbout()">S</div>
 <div class="logo">🖤❤️</div>
 <h1>Will You Be Mine <span>Forever?</span></h1>
@@ -53,55 +57,57 @@ h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-cli
 <div class="dev">DEVELOPED BY <b>SAMAMA</b></div>
 </div>
 <div id="aboutModal" onclick="closeAbout()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeAbout()">✕</div><h3 style="color:#ff2a5a;font-size:12px;letter-spacing:2px">ABOUT 🖤❤️</h3><p style="color:#fff;font-size:13px;line-height:1.7;margin-top:10px"><b style="color:#ff2a5a">For My Fajar G 🖤❤️</b><br><br>This website is made with love by Samama for Fajar G.<br>This is my first ever project, dedicated to my love.<br><br>Made with 🖤 by Samama</p></div></div>
+<div id="letterModal" onclick="closeLetter()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeLetter()">✕</div><div style="font-size:48px;text-align:center">💌</div><h3 style="color:#ff2a5a;text-align:center;margin-top:8px">MY LOVE LETTER</h3><p style="color:#fff;font-size:13px;line-height:1.8;margin-top:12px">Meri Pyaari Fajar G,<br><br>Tum meri duniya ho, meri subah shaam ho. Jab se tum meri zindagi me aayi ho, har din khubsurat lagta hai.<br><br>Tum meri Queen ho, meri Pari ho, mera sab kuch ho.<br><br>Kya tum hamesha ke liye meri banogi?<br><br><b style="color:#ff8a9a">Hamesha Tumhara,<br>Samama 🖤❤️</b></p></div></div>
 <script>
-// stars background
 const starsCanvas=document.getElementById('starsCanvas');const sCtx=starsCanvas.getContext('2d');
 function resizeStars(){starsCanvas.width=innerWidth;starsCanvas.height=innerHeight}resizeStars();addEventListener('resize',resizeStars);
 let stars=[];for(let i=0;i<80;i++)stars.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.2,blink:Math.random()*10});
 (function drawStars(){sCtx.clearRect(0,0,starsCanvas.width,starsCanvas.height);stars.forEach(s=>{s.blink+=0.02;sCtx.globalAlpha=0.25+Math.abs(Math.sin(s.blink))*0.6;sCtx.fillStyle='#ff8a9a';sCtx.beginPath();sCtx.arc(s.x,s.y,s.r,0,Math.PI*2);sCtx.fill();});sCtx.globalAlpha=0.05;sCtx.font='bold 70px Poppins';sCtx.fillStyle='#ff2a5a';sCtx.fillText('FAJAR G',innerWidth/2-110,innerHeight/2);requestAnimationFrame(drawStars);})();
-
-// fireworks - SHORT 1.5 sec only
 const fwCanvas=document.getElementById('fireworksCanvas');const fwCtx=fwCanvas.getContext('2d');
 function resizeFW(){fwCanvas.width=innerWidth;fwCanvas.height=innerHeight}resizeFW();
 let particles=[];function createFirework(x,y){for(let i=0;i<26;i++)particles.push({x,y,vx:(Math.random()-0.5)*7,vy:(Math.random()-0.5)*7,life:1,color:`hsl(${340+Math.random()*20},100%,60%)`});}
 function animateFW(){fwCtx.fillStyle='rgba(0,0,0,0.22)';fwCtx.fillRect(0,0,fwCanvas.width,fwCanvas.height);particles.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.08;p.life-=0.02;fwCtx.globalAlpha=p.life;fwCtx.fillStyle=p.color;fwCtx.beginPath();fwCtx.arc(p.x,p.y,2.5,0,Math.PI*2);fwCtx.fill();if(p.life<=0)particles.splice(i,1);});if(fwCanvas.style.display!=='none')requestAnimationFrame(animateFW);}
 function startFireworks(){fwCanvas.style.display='block';fwCtx.clearRect(0,0,fwCanvas.width,fwCanvas.height);animateFW();let c=0;let int=setInterval(()=>{createFirework(Math.random()*innerWidth,Math.random()*innerHeight*0.5);c++;if(c>4)clearInterval(int);},180);setTimeout(()=>{fwCanvas.style.display='none';particles=[];},1500);}
-
 function openAbout(){document.getElementById('aboutModal').classList.add('show')}function closeAbout(){document.getElementById('aboutModal').classList.remove('show')}
+function openLetter(){document.getElementById('letterModal').classList.add('show')}function closeLetter(){document.getElementById('letterModal').classList.remove('show')}
 const noBtn=document.getElementById('no');const area=document.getElementById('area');
 const texts=["No 🙈","Are you sure? 😜","Pakka? 🤭","Socho! 😏","Hehe 😂","Catch me! 🏃‍♀️","Nope 😜"];
-function moveNoButton(e){
-    const areaRect=area.getBoundingClientRect();const btnRect=noBtn.getBoundingClientRect();
-    const maxX=areaRect.width-btnRect.width-8;const maxY=areaRect.height-btnRect.height-8;
-    let newX=Math.random()*maxX;let newY=Math.random()*maxY;
-    if(e){
-        const mouseX=(e.clientX||(e.touches&&e.touches[0].clientX))-areaRect.left;
-        const mouseY=(e.clientY||(e.touches&&e.touches[0].clientY))-areaRect.top;
-        if(Math.abs(newX-mouseX)<60) newX=(newX+80)%maxX;
-        if(Math.abs(newY-mouseY)<40) newY=(newY+50)%maxY;
-    }
-    noBtn.style.left=`${Math.max(0,newX)}px`;noBtn.style.top=`${Math.max(0,newY)}px`;
-    noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];
-}
-noBtn.addEventListener('mouseenter',moveNoButton);
-noBtn.addEventListener('touchstart',(e)=>{e.preventDefault();moveNoButton(e);});
-noBtn.addEventListener('click',(e)=>{e.preventDefault();moveNoButton(e);});
-document.addEventListener('mousemove',(e)=>{
-    const rect=noBtn.getBoundingClientRect();
-    const dist=Math.hypot(e.clientX-(rect.left+rect.width/2), e.clientY-(rect.top+rect.height/2));
-    if(dist<55) moveNoButton(e);
-});
+function moveNoButton(e){const areaRect=area.getBoundingClientRect();const btnRect=noBtn.getBoundingClientRect();const maxX=areaRect.width-btnRect.width-8;const maxY=areaRect.height-btnRect.height-8;let newX=Math.random()*maxX;let newY=Math.random()*maxY;if(e){const mouseX=(e.clientX||(e.touches&&e.touches[0].clientX))-areaRect.left;const mouseY=(e.clientY||(e.touches&&e.touches[0].clientY))-areaRect.top;if(Math.abs(newX-mouseX)<60) newX=(newX+80)%maxX;if(Math.abs(newY-mouseY)<40) newY=(newY+50)%maxY;}noBtn.style.left=`${Math.max(0,newX)}px`;noBtn.style.top=`${Math.max(0,newY)}px`;noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];}
+noBtn.addEventListener('mouseenter',moveNoButton);noBtn.addEventListener('touchstart',(e)=>{e.preventDefault();moveNoButton(e);});noBtn.addEventListener('click',(e)=>{e.preventDefault();moveNoButton(e);});
+document.addEventListener('mousemove',(e)=>{const rect=noBtn.getBoundingClientRect();const dist=Math.hypot(e.clientX-(rect.left+rect.width/2), e.clientY-(rect.top+rect.height/2));if(dist<55) moveNoButton(e);});
 setInterval(()=>{let h=document.createElement('div');h.className='heart';h.innerText=['🖤','❤️','💋','✨'][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+'vw';h.style.fontSize=(16+Math.random()*18)+'px';h.style.animationDuration=(2.5+Math.random()*2)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),4500);},200);
+
+// PHOTO NAME IS YOUR SAVED FILE
+const photoFile = "Screenshot_20261015-160153.jpg";
+let showingVideo = true;
+function toggleMedia(){
+  let container=document.getElementById('mediaContainer');let capEl=document.getElementById('photoCaption');
+  if(showingVideo){
+    container.innerHTML=`<img class="final-img" src="${photoFile}" onerror="alert('Photo nahi mili: ${photoFile} - naam check karo')">`;
+    if(capEl)capEl.innerText="My Cute Fajar G 😍 - My Pari G 💖";
+    document.getElementById('nextBtn').innerText="🎥 Video";showingVideo=false;
+  }else{
+    container.innerHTML=`<video id="myVideo" class="final-video" src="video.mp4" autoplay loop playsinline controls onerror="this.style.display='none'"></video>`;
+    setTimeout(()=>{const v=document.getElementById('myVideo');if(v){v.muted=false;v.volume=1;v.play().catch(()=>{})}},200);
+    if(capEl)capEl.innerText="Our beautiful moment ❤️";document.getElementById('nextBtn').innerText="🖼️ Photo";showingVideo=true;
+  }
+}
+
 document.getElementById('yes').onclick=()=>{
     startFireworks();
     document.getElementById('card').innerHTML=`
         <div class="top-badge">YES! SHE SAID YES!</div>
         <div class="top-logo" onclick="openAbout()">S</div>
         <div class="logo">😍🖤</div>
-        <video id="myVideo" class="final-video" src="video.mp4" autoplay loop playsinline controls onerror="this.style.display='none'"></video>
+        <div id="mediaContainer"><video id="myVideo" class="final-video" src="video.mp4" autoplay loop playsinline controls onerror="this.style.display='none'"></video></div>
+        <div class="caption" id="photoCaption">Our beautiful moment ❤️</div>
         <div class="final">Yayy! I Knew You'd Say <span>YES</span>, My Fajar G! 🥹❤️</div>
         <div class="final2">My Pari G I love you forever</div>
         <div class="counter" id="dayCounter"></div>
+        <div class="action-btns">
+          <button class="small-btn" id="nextBtn" onclick="toggleMedia()">🖼️ Photo</button>
+          <button class="small-btn love" onclick="openLetter()">💌 Letter</button>
+        </div>
         <div class="dev">DEVELOPED BY <b>SAMAMA</b></div>
     `;
     let startDate=new Date('2025-12-23');
