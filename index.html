@@ -7,24 +7,30 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Great+Vibes&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 0%, #5a1020 0%, #1a0005 40%, #000 80%);padding:12px}
-.card{width:100%;max-width:380px;background:rgba(255,255,255,0.07);backdrop-filter:blur(15px);border:1.5px solid rgba(255,0,51,0.35);border-radius:32px;padding:28px 20px;text-align:center;box-shadow:0 0 50px rgba(255,0,51,0.3);position:relative}
-.top-logo{position:absolute;top:14px;right:14px;width:36px;height:36px;background:rgba(0,0,0,0.5);border:1px solid rgba(255,0,51,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ff2a5a;font-weight:800;font-size:14px;cursor:pointer;z-index:10}
-.logo{font-size:60px;animation:beat 1s infinite} @keyframes beat{50%{transform:scale(1.15)}}
-h1{font-size:26px;color:#fff;font-weight:800;margin:10px 0} h1 span{color:#ff2a5a}
-.sub{color:#c9a0a8;font-size:13px;margin-bottom:18px}
-.btns{height:130px;position:relative;display:flex;justify-content:center;align-items:center;gap:14px}
-.btn{border:0;padding:14px 32px;border-radius:100px;font-weight:800;font-size:16px;cursor:pointer}
-.yes{background:linear-gradient(135deg,#ff0033,#a50022);color:#fff;box-shadow:0 8px 25px rgba(255,0,51,0.5);z-index:5}
-.no{background:#151515;border:1px solid #333;color:#888;position:absolute;left:190px;top:45px}
+body{height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 0%, #5a1020 0%, #1a0005 40%, #000 80%);padding:12px;overflow:hidden}
+.card{width:100%;max-width:380px;background:rgba(255,255,255,0.08);backdrop-filter:blur(18px);border:1.5px solid rgba(255,0,51,0.4);border-radius:32px;padding:28px 20px 18px;text-align:center;box-shadow:0 0 60px rgba(255,0,51,0.35), inset 0 1px 0 rgba(255,255,255,0.1);position:relative;animation:cardIn 0.6s ease}
+@keyframes cardIn{from{transform:scale(0.9) translateY(20px);opacity:0} to{transform:scale(1) translateY(0);opacity:1}}
+.top-logo{position:absolute;top:14px;right:14px;width:36px;height:36px;background:linear-gradient(135deg,rgba(0,0,0,0.6),rgba(255,0,51,0.2));border:1px solid rgba(255,0,51,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ff2a5a;font-weight:800;font-size:14px;cursor:pointer;z-index:10;box-shadow:0 0 10px rgba(255,0,51,0.3)}
+.logo{font-size:58px;animation:beat 1.2s infinite;filter:drop-shadow(0 0 15px rgba(255,0,51,0.5))} @keyframes beat{50%{transform:scale(1.18)}}
+h1{font-size:27px;color:#fff;font-weight:800;margin:12px 0 6px;line-height:1.2;text-shadow:0 0 20px rgba(255,0,51,0.4)} h1 span{background:linear-gradient(90deg,#ff2a5a,#ff8a9a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:#e0b0b8;font-size:13.5px;margin-bottom:20px;letter-spacing:0.3px}
+.btns{height:125px;position:relative;display:flex;justify-content:center;align-items:center;gap:14px}
+.btn{border:0;padding:14px 34px;border-radius:100px;font-weight:800;font-size:15.5px;cursor:pointer;transition:0.2s}
+.yes{background:linear-gradient(135deg,#ff0033,#ff2a5a);color:#fff;box-shadow:0 8px 25px rgba(255,0,51,0.6), 0 0 15px rgba(255,0,51,0.4);z-index:5;animation:yesPulse 2s infinite}
+@keyframes yesPulse{0%,100%{box-shadow:0 8px 25px rgba(255,0,51,0.6)} 50%{box-shadow:0 12px 35px rgba(255,0,51,0.8), 0 0 25px rgba(255,0,51,0.5)}}
+.yes:active{transform:scale(0.94)}
+.no{background:rgba(20,20,20,0.9);border:1px solid #333;color:#888;position:absolute;left:190px;top:45px;backdrop-filter:blur(5px)}
 .heart{position:fixed;top:-5%;animation:fall linear forwards;pointer-events:none} @keyframes fall{to{top:110vh}}
-.final-video{width:100%;height:auto;max-height:58vh;object-fit:contain;border-radius:22px;border:2px solid #ff0033;box-shadow:0 0 30px rgba(255,0,51,0.6);margin:12px auto;display:block;background:#000}
-.final{font-size:20px;font-weight:800;color:#fff;margin-top:12px} .final span{color:#ff2a5a}
-.final2{font-family:'Great Vibes',cursive;font-size:34px;color:#ff8a9a;margin-top:6px}
-.dev{margin-top:14px;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35)} .dev b{color:#ff2a5a}
-#aboutModal{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
+
+/* SECOND PAGE - FIT SCREEN, NO SCROLL */
+.final-video{width:100%;height:auto;max-height:46vh;object-fit:cover;border-radius:20px;border:2px solid #ff2a5a;box-shadow:0 0 30px rgba(255,0,51,0.7);margin:8px auto;display:block;background:#000}
+.final{font-size:18px;font-weight:800;color:#fff;margin-top:10px;line-height:1.3} .final span{background:linear-gradient(90deg,#ff2a5a,#ff8a9a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.final2{font-family:'Great Vibes',cursive;font-size:32px;color:#ffb3c1;margin-top:6px;text-shadow:0 0 15px rgba(255,0,51,0.5)}
+.love-badge{display:inline-block;margin-top:8px;padding:5px 16px;background:rgba(255,0,51,0.15);border:1px solid rgba(255,0,51,0.4);border-radius:100px;color:#ff8a9a;font-size:10px;letter-spacing:1.5px}
+.dev{margin-top:12px;font-size:9px;letter-spacing:2.5px;color:rgba(255,255,255,0.4)} .dev b{color:#ff2a5a}
+#aboutModal{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
 #aboutModal.show{display:flex}
-.modal-box{width:100%;max-width:340px;background:#111;border:1.5px solid #ff0033;border-radius:24px;padding:22px;position:relative;text-align:left;animation:pop 0.3s}
+.modal-box{width:100%;max-width:340px;background:#121212;border:1.5px solid #ff0033;border-radius:24px;padding:22px;position:relative;text-align:left;animation:pop 0.3s}
 @keyframes pop{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
 .close{position:absolute;top:12px;right:14px;font-size:20px;color:#888;cursor:pointer}
 .modal-box h3{color:#ff2a5a;font-size:13px;letter-spacing:2px;margin-bottom:10px}
@@ -86,9 +92,11 @@ document.getElementById('yes').onclick=()=>{
   <video id="myVideo" class="final-video" src="video.mp4" autoplay loop playsinline controls></video>
   <div class="final">Yayy! I Knew You'd Say <span>YES</span>, My Fajar G! 🥹❤️</div>
   <div class="final2">My Pari G I love you forever</div>
+  <div class="love-badge">FOREVER YOURS 🖤</div>
   <div class="dev">DEVELOP BY <b>SAMAMA</b></div>
  `;
  setTimeout(()=>{ const v=document.getElementById('myVideo'); v.muted=false; v.volume=1; v.play().catch(()=>{}); },200);
+ for(let i=0;i<20;i++){setTimeout(()=>{let h=document.createElement('div');h.className='heart';h.innerText='❤️';h.style.left=Math.random()*100+'vw';h.style.fontSize='22px';h.style.animationDuration='2.5s';document.body.appendChild(h);setTimeout(()=>h.remove(),2500)},i*70)}
 };
 </script>
 </body>
