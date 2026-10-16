@@ -17,7 +17,8 @@ body{min-height:100vh;height:100dvh;display:flex;align-items:center;justify-cont
 @keyframes beat{50%{transform:scale(1.18)}}
 h1{font-size:26px;color:#fff;font-weight:800;margin:14px 0 8px;line-height:1.1;transition:0.3s}
 h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.sub{color:#d8b4bc;font-size:13.5px;margin-bottom:22px}.sub b{color:#fff}
+.sub{color:#d8b4bc;font-size:13.5px;margin-bottom:22px}
+.sub b{color:#fff}
 .btns{height:150px;position:relative;display:flex;justify-content:center;align-items:center;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);border-radius:22px;}
 .btn{border:0;padding:14px 34px;border-radius:100px;font-weight:800;font-size:16px;cursor:pointer;position:absolute}
 .yes{background:linear-gradient(135deg,#ff0055,#ff2a5a);color:#fff;box-shadow:0 8px 25px rgba(255,0,85,0.6);z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);animation:pulse 1.8s infinite}
@@ -29,13 +30,12 @@ h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-cli
 .final2{font-family:'Great Vibes',cursive;font-size:34px;color:#ff8a9a;margin-top:6px}
 .counter{margin-top:8px;font-size:10px;color:#ff8a9a;background:rgba(255,0,51,0.1);padding:6px 12px;border-radius:100px;display:inline-block;border:1px solid rgba(255,0,51,0.2)}
 .caption{font-size:11px;color:#ffccd5;margin-top:4px;font-style:italic}
-.action-btns{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.action-btns{display:flex;gap:6px;justify-content:center;margin-top:10px}
 .small-btn{padding:8px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:#fff;font-size:11px;font-weight:600;cursor:pointer}
 .small-btn.love{background:linear-gradient(135deg,#ff0033,#a50022);border:0}
-.small-btn.album{background:linear-gradient(135deg,#ffaa00,#ff5500);border:0}
 .dev{margin-top:16px;font-size:8px;letter-spacing:3px;color:rgba(255,255,255,0.35)}.dev b{color:#ff2a5a}
-#aboutModal,#letterModal,#albumModal{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
-#aboutModal.show,#letterModal.show,#albumModal.show{display:flex}
+#aboutModal,#letterModal{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
+#aboutModal.show,#letterModal.show{display:flex}
 .modal-box{width:100%;max-width:340px;background:#111;border:1.5px solid #ff0055;border-radius:24px;padding:22px;position:relative;max-height:85vh;overflow-y:auto}
 .close{position:absolute;top:12px;right:14px;font-size:20px;color:#888;cursor:pointer}
 .top-badge{position:absolute;top:14px;left:16px;background:rgba(255,0,51,0.12);border:1px solid rgba(255,0,51,0.3);padding:4px 9px;border-radius:100px;font-size:7px;letter-spacing:1.5px;color:#ff8a9a;font-weight:700}
@@ -46,11 +46,6 @@ h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-cli
 .stars-text{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:61;font-size:58px;font-weight:800;color:#fff;text-shadow:0 0 20px #ff2a5a, 0 0 40px #ff2a5a, 0 0 80px #ff0055;display:none;letter-spacing:6px}
 .stars-text.show{display:block;animation:zoomIn 1.2s ease-out}
 @keyframes zoomIn{0%{transform:translate(-50%,-50%) scale(0);opacity:0}100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
-.album-title{font-family:'Great Vibes',cursive;font-size:28px;color:#ff8a9a;text-align:center;line-height:1.2}
-.album-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
-.album-item{border-radius:16px;overflow:hidden;border:1.5px solid #ff0055;background:#000}
-.album-item video{width:100%;height:160px;object-fit:cover;display:block}
-.album-item .alb-cap{font-size:10px;color:#ffccd5;text-align:center;padding:6px;background:rgba(255,0,51,0.1)}
 </style>
 </head>
 <body>
@@ -77,8 +72,6 @@ h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-cli
 
 <div id="letterModal" onclick="closeLetter()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeLetter()">✕</div><div style="font-size:48px;text-align:center">💌</div><h3 style="color:#ff2a5a;text-align:center;margin-top:8px">MY LOVE LETTER</h3><p id="typewriterText" style="color:#fff;font-size:13.5px;line-height:1.9;margin-top:12px;min-height:200px"></p></div></div>
 
-<div id="albumModal" onclick="closeAlbum()"><div class="modal-box" onclick="event.stopPropagation()" style="max-width:380px"><div class="close" onclick="closeAlbum()">✕</div><div class="album-title">First Birthday 🎂<br>with First Proposal 💍</div><p style="color:#d8b4bc;font-size:11px;text-align:center;margin-top:6px">Our special memories forever</p><div class="album-grid"><div class="album-item"><video src="video1.mp4" controls playsinline></video><div class="alb-cap">First Birthday 🎂</div></div><div class="album-item"><video src="video2.mp4" controls playsinline></video><div class="alb-cap">First Proposal 💖</div></div></div><p style="color:#ff8a9a;font-size:10px;text-align:center;margin-top:12px">For My Queen Fajar G 👑</p></div></div>
-
 <script>
 const starsCanvas=document.getElementById('starsCanvas');const sCtx=starsCanvas.getContext('2d');
 function resizeStars(){starsCanvas.width=innerWidth;starsCanvas.height=innerHeight}resizeStars();addEventListener('resize',resizeStars);
@@ -91,39 +84,77 @@ let particles=[];function createFirework(x,y){for(let i=0;i<26;i++)particles.pus
 function animateFW(){fwCtx.fillStyle='rgba(0,0,0,0.22)';fwCtx.fillRect(0,0,fwCanvas.width,fwCanvas.height);particles.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.08;p.life-=0.02;fwCtx.globalAlpha=p.life;fwCtx.fillStyle=p.color;fwCtx.beginPath();fwCtx.arc(p.x,p.y,2.5,0,Math.PI*2);fwCtx.fill();if(p.life<=0)particles.splice(i,1);});if(fwCanvas.style.display!=='none')requestAnimationFrame(animateFW);}
 function startFireworks(){fwCanvas.style.display='block';fwCtx.clearRect(0,0,fwCanvas.width,fwCanvas.height);animateFW();let c=0;let int=setInterval(()=>{createFirework(Math.random()*innerWidth,Math.random()*innerHeight*0.5);c++;if(c>6)clearInterval(int);},180);setTimeout(()=>{fwCanvas.style.display='none';particles=[];},2000);}
 
+// NAME IN STARS EFFECT
 const nameCanvas=document.getElementById('nameStarsCanvas');const nameCtx=nameCanvas.getContext('2d');
 function resizeName(){nameCanvas.width=innerWidth;nameCanvas.height=innerHeight}resizeName();
 function showNameInStars(){
   nameCanvas.style.display='block';
   document.getElementById('starsNameText').classList.add('show');
-  let starParts=[];for(let i=0;i<150;i++) starParts.push({x:Math.random()*nameCanvas.width, y:Math.random()*nameCanvas.height, r:Math.random()*2+1, a:Math.random()});
-  function drawNameStars(){nameCtx.clearRect(0,0,nameCanvas.width,nameCanvas.height);starParts.forEach(s=>{s.a+=0.05;nameCtx.globalAlpha=0.5+Math.sin(s.a)*0.5;nameCtx.fillStyle='#ff8a9a';nameCtx.beginPath();nameCtx.arc(s.x,s.y,s.r,0,Math.PI*2);nameCtx.fill();});if(nameCanvas.style.display!=='none') requestAnimationFrame(drawNameStars);}
+  let starParts=[];
+  for(let i=0;i<150;i++) starParts.push({x:Math.random()*nameCanvas.width, y:Math.random()*nameCanvas.height, r:Math.random()*2+1, a:Math.random()});
+  function drawNameStars(){
+    nameCtx.clearRect(0,0,nameCanvas.width,nameCanvas.height);
+    starParts.forEach(s=>{
+      s.a+=0.05;
+      nameCtx.globalAlpha=0.5+Math.sin(s.a)*0.5;
+      nameCtx.fillStyle='#ff8a9a';
+      nameCtx.beginPath();nameCtx.arc(s.x,s.y,s.r,0,Math.PI*2);nameCtx.fill();
+    });
+    if(nameCanvas.style.display!=='none') requestAnimationFrame(drawNameStars);
+  }
   drawNameStars();
   setTimeout(()=>{nameCanvas.style.display='none';document.getElementById('starsNameText').classList.remove('show');},3500);
 }
 
 function openAbout(){document.getElementById('aboutModal').classList.add('show')}function closeAbout(){document.getElementById('aboutModal').classList.remove('show')}
+
+// TYPEWRITER LETTER
 const letterFullText = `Meri Pyaari Fajar G,<br><br>Ap meri duniya hain, meri subah shaam hain. Jab se Ap meri zindagi me aayi hain, har din khubsurat lagta hai.<br><br>Ap meri Queen hain, meri Pari hain, mera sab kuch hain.<br><br>Kya Ap hamesha ke liye meri banengi? Kya Ap mujhe apna banayengi?<br><br>Main wada karta hun, Ap ko hamesha khush rakhunga, Ap ka khayal rakhunga.<br><br><b style="color:#ff8a9a">Hamesha Ap Ka,<br>Samama 🖤❤️</b>`;
 let typeInterval;
 function openLetter(){
   document.getElementById('letterModal').classList.add('show');
-  const el=document.getElementById('typewriterText'); el.innerHTML=''; let i=0; let tag=''; let inTag=false; clearInterval(typeInterval);
-  typeInterval=setInterval(()=>{if(i>=letterFullText.length){clearInterval(typeInterval); el.classList.remove('type-cursor'); return;} let char=letterFullText[i]; if(char==='<'){inTag=true; tag='';} if(inTag){tag+=char; if(char==='>'){inTag=false; el.innerHTML+=tag;}} else {el.innerHTML+=char;} el.classList.add('type-cursor'); i++;},22);
+  const el=document.getElementById('typewriterText');
+  el.innerHTML=''; let i=0; let tag=''; let inTag=false;
+  clearInterval(typeInterval);
+  typeInterval=setInterval(()=>{
+    if(i>=letterFullText.length){clearInterval(typeInterval); el.classList.remove('type-cursor'); return;}
+    let char=letterFullText[i];
+    if(char==='<'){inTag=true; tag='';}
+    if(inTag){tag+=char; if(char==='>'){inTag=false; el.innerHTML+=tag;} }
+    else {el.innerHTML+=char;}
+    el.classList.add('type-cursor');
+    i++;
+  },22);
 }
 function closeLetter(){document.getElementById('letterModal').classList.remove('show');clearInterval(typeInterval);}
-function openAlbum(){document.getElementById('albumModal').classList.add('show')}
-function closeAlbum(){document.getElementById('albumModal').classList.remove('show'); document.querySelectorAll('#albumModal video').forEach(v=>v.pause());}
 
+// ROAMING NO BUTTON - FULL SCREEN
 const noBtn=document.getElementById('no');
 const texts=["No 🙈","Pakka? 🤭","Socho! 😏","Catch me! 🏃‍♀️","Nope 😜","Hehe 😂","Arre 😜","Impossible! 😝"];
-function moveNoButton(){const padding=20;const maxX=window.innerWidth-noBtn.offsetWidth-padding;const maxY=window.innerHeight-noBtn.offsetHeight-padding;const x=Math.random()*maxX;const y=Math.random()*maxY;noBtn.style.left=x+"px";noBtn.style.top=y+"px";noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];}
+function moveNoButton(){
+    const padding = 20;
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+    noBtn.innerText = texts[Math.floor(Math.random()*texts.length)];
+}
 moveNoButton();
 noBtn.addEventListener('mouseenter', moveNoButton);
 noBtn.addEventListener('touchstart', (e)=>{e.preventDefault(); moveNoButton();});
 noBtn.addEventListener('click', (e)=>{e.preventDefault(); moveNoButton();});
-document.addEventListener('mousemove', (e)=>{const btnRect=noBtn.getBoundingClientRect();const btnCenterX=btnRect.left+btnRect.width/2;const btnCenterY=btnRect.top+btnRect.height/2;let dist=Math.hypot(e.clientX-btnCenterX,e.clientY-btnCenterY);if(dist<110) moveNoButton();});
+document.addEventListener('mousemove', (e)=>{
+    const btnRect = noBtn.getBoundingClientRect();
+    const btnCenterX = btnRect.left + btnRect.width/2;
+    const btnCenterY = btnRect.top + btnRect.height/2;
+    let dist = Math.hypot(e.clientX - btnCenterX, e.clientY - btnCenterY);
+    if(dist < 110) moveNoButton();
+});
 setInterval(()=>{let h=document.createElement('div');h.className='heart';h.innerText=['🖤','❤️','💋','✨'][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+'vw';h.style.fontSize=(16+Math.random()*18)+'px';h.style.animationDuration=(2.5+Math.random()*2)+'s';h.style.top='-5%';h.style.position='fixed';document.body.appendChild(h);setTimeout(()=>h.remove(),4500);},200);
 
+// 3 QUESTIONS GAME LOGIC
 const questions=[
   {logo:"🥺❤️", title:"Do You Love Me <span>a little? 🥺</span>", sub:`Sach sach batana meri <b>Fajar G</b>!`, badge:"QUESTION 1 OF 3", bar:"33%"},
   {logo:"😜💖", title:"Will You Annoy Me <span>Forever? 😜</span>", sub:`Socho, lifetime ka contract hai <b>Fajar G</b>!`, badge:"QUESTION 2 OF 3", bar:"66%"},
@@ -136,6 +167,7 @@ const mainSub=document.getElementById('mainSub');
 const mainLogo=document.getElementById('mainLogo');
 const topBadge=document.getElementById('topBadge');
 const progressBar=document.getElementById('progressBar');
+
 function showQuestion(idx){
   mainLogo.innerText=questions[idx].logo;
   mainLogo.style.animation='none'; void mainLogo.offsetWidth; mainLogo.style.animation='beat 1.2s infinite';
@@ -144,6 +176,7 @@ function showQuestion(idx){
   topBadge.innerText=questions[idx].badge;
   progressBar.style.width=questions[idx].bar;
 }
+
 const photoFile="Screenshot_20261015-160153.jpg";let showingVideo=true;
 function toggleMedia(){
   let container=document.getElementById('mediaContainer');let capEl=document.getElementById('photoCaption');
@@ -157,13 +190,16 @@ function toggleMedia(){
     if(capEl)capEl.innerText="Our beautiful moment ❤️";document.getElementById('nextBtn').innerText="🖼️ Photo";showingVideo=true;
   }
 }
+
 yesBtn.onclick=()=>{
   if(currentQ < 2){
     currentQ++;
     showQuestion(currentQ);
     moveNoButton();
+    // small heart burst
     for(let i=0;i<10;i++){ setTimeout(moveNoButton, i*80); }
   } else {
+    // FINAL YES
     startFireworks();
     setTimeout(showNameInStars, 600);
     noBtn.style.display='none';
@@ -172,14 +208,13 @@ yesBtn.onclick=()=>{
         <div class="top-logo" onclick="openAbout()">S</div>
         <div class="logo">😍🖤</div>
         <div id="mediaContainer"><video id="myVideo" class="final-video" src="video.mp4" autoplay loop playsinline controls></video></div>
-        <div class="caption" id="photoCaption">Our beautiful moment ❤️</div>
+        <div class="caption" id="photoCaption"> beautiful angel ❤️</div>
         <div class="final">Yayy! I Knew You'd Say <span>YES</span>, My Fajar G! 🥹❤️</div>
         <div class="final2">My Pari G I love you forever</div>
         <div class="counter" id="dayCounter"></div>
         <div class="action-btns">
           <button class="small-btn" id="nextBtn" onclick="toggleMedia()">🖼️ Photo</button>
           <button class="small-btn love" onclick="openLetter()">💌 Letter</button>
-          <button class="small-btn album" onclick="openAlbum()">🎂 Album</button>
         </div>
         <div class="dev">DEVELOPED BY <b>SAMAMA</b></div>
     `;
