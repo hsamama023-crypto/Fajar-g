@@ -18,13 +18,15 @@ body{min-height:100vh;height:100dvh;display:flex;align-items:center;justify-cont
 h1{font-size:26px;color:#fff;font-weight:800;margin:14px 0 8px;line-height:1.1}
 h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .sub{color:#d8b4bc;font-size:13.5px;margin-bottom:22px}.sub b{color:#fff}
-.btns{height:160px;position:relative;display:flex;justify-content:center;align-items:center;background:rgba(15,0,3,0.6);border:1px solid rgba(139,0,22,0.25);border-radius:22px}
-.btn{border:0;padding:14px 30px;border-radius:100px;font-weight:800;font-size:16px;cursor:pointer;position:absolute;white-space:nowrap}
+.btns{height:180px;position:relative;display:flex;justify-content:center;align-items:center;background:rgba(15,0,3,0.6);border:1px solid rgba(139,0,22,0.25);border-radius:22px}
+.btn{border:0;padding:14px 30px;border-radius:100px;font-weight:800;font-size:16px;cursor:pointer;position:absolute;white-space:nowrap;transition:all 0.3s ease}
 .yes{background:linear-gradient(135deg,#8a0000,#ff0033);color:#fff;box-shadow:0 8px 30px rgba(139,0,0,0.8);z-index:5;left:32%;top:50%;transform:translate(-50%,-50%);animation:pulse 1.8s infinite}
 @keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.05)}}
 .no{background:rgba(15,0,3,0.85);border:1px solid rgba(139,0,22,0.5);color:#ffb3c1;backdrop-filter:blur(10px);transition:all 0.18s ease-out;z-index:10;left:68%;top:50%;transform:translate(-50%,-50%)}
 .no.roaming{position:fixed !important;transform:none !important;left:0;top:0;z-index:9999}
-.heart{position:fixed;top:-5%;animation:fall linear forwards;pointer-events:none;z-index:999} @keyframes fall{to{top:115vh}}
+.heart{position:fixed;top:-5%;animation:fall linear forwards;pointer-events:none;z-index:999} 
+.photo-rain{position:fixed;top:-10%;width:50px;height:50px;border-radius:12px;object-fit:cover;border:2px solid #ff2a5a;box-shadow:0 0 15px rgba(255,0,51,0.6);animation:fall linear forwards;pointer-events:none;z-index:998}
+@keyframes fall{to{top:115vh;transform:rotate(360deg)}}
 .final-video,.final-img{width:100%;max-height:36vh;object-fit:contain;border-radius:22px;border:2px solid #8b0016;box-shadow:0 0 35px rgba(139,0,0,0.7);margin:12px auto;display:block;background:#000}
 .final{font-size:20px;font-weight:800;color:#fff;margin-top:12px}.final span{color:#ff2a5a}
 .final2{font-family:'Great Vibes',cursive;font-size:34px;color:#ff8a9a;margin-top:6px}
@@ -41,6 +43,7 @@ h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-cli
 .top-badge{position:absolute;top:14px;left:16px;background:rgba(139,0,0,0.18);border:1px solid rgba(139,0,22,0.45);padding:4px 9px;border-radius:100px;font-size:7px;letter-spacing:1.5px;color:#ff8a9a;font-weight:700}
 .progress{height:4px;background:rgba(255,255,255,0.08);border-radius:10px;margin-bottom:15px;overflow:hidden}
 .progress-bar{height:100%;background:linear-gradient(90deg,#8a0000,#ff2a5a);width:33%;transition:0.5s}
+.love-meter{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.6);border:1px solid rgba(255,0,51,0.3);padding:4px 10px;border-radius:100px;font-size:10px;color:#ff8a9a;backdrop-filter:blur(10px)}
 .stars-text{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:61;font-size:58px;font-weight:800;color:#fff;text-shadow:0 0 20px #ff2a5a, 0 0 40px #ff2a5a, 0 0 80px #ff0055;display:none;letter-spacing:6px}
 .stars-text.show{display:block;animation:zoomIn 1.2s ease-out}
 @keyframes zoomIn{0%{transform:translate(-50%,-50%) scale(0);opacity:0}100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
@@ -50,7 +53,7 @@ h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-cli
 <canvas id="starsCanvas"></canvas>
 <canvas id="fireworksCanvas"></canvas>
 <canvas id="nameStarsCanvas"></canvas>
-<div id="starsNameText" class="stars-text">FAJAR 💓✨</div>
+<div id="starsNameText" class="stars-text">FAJAR G ✨</div>
 <div class="card" id="card">
 <div class="top-badge" id="topBadge">QUESTION 1 OF 3</div>
 <div class="top-logo" onclick="openAbout()">S</div>
@@ -59,15 +62,14 @@ h1 span{background:linear-gradient(90deg,#ff2a5a,#ffb3c1);-webkit-background-cli
 <h1 id="mainTitle">Do You Love Me <span>a little? 🥺</span></h1>
 <p class="sub" id="mainSub">Sach sach batana meri <b>Fajar G</b>!</p>
 <div class="btns" id="area">
+<div class="love-meter" id="loveMeter">Love: 50% 💖</div>
 <button class="btn yes" id="yes">YES! 😍</button>
 <button class="btn no" id="no">No 🙈</button>
 </div>
 <div class="dev">DEVELOPED BY <b>SAMAMA</b></div>
 </div>
-
 <div id="aboutModal" onclick="closeAbout()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeAbout()">✕</div><h3 style="color:#ff2a5a">ABOUT ME</h3><p style="color:#fff;font-size:13.5px;line-height:1.8;margin-top:12px">This is my first app and I am so happy that I made it for my most favourite person in life, Fajar G.<br><br><b style="color:#ff8a9a">Made with 🖤 by Samama<br>For My Queen, Fajar G 👑</b></p></div></div>
 <div id="letterModal" onclick="closeLetter()"><div class="modal-box" onclick="event.stopPropagation()"><div class="close" onclick="closeLetter()">✕</div><div style="font-size:48px;text-align:center">💌</div><h3 style="color:#ff2a5a;text-align:center;margin-top:8px">MY LOVE LETTER</h3><p id="typewriterText" style="color:#fff;font-size:13.5px;line-height:1.9;margin-top:12px;min-height:200px"></p></div></div>
-
 <script>
 const starsCanvas=document.getElementById('starsCanvas');const sCtx=starsCanvas.getContext('2d');
 function resizeStars(){starsCanvas.width=innerWidth;starsCanvas.height=innerHeight}resizeStars();addEventListener('resize',resizeStars);
@@ -80,28 +82,47 @@ function animateFW(){fwCtx.fillStyle='rgba(0,0,0,0.22)';fwCtx.fillRect(0,0,fwCan
 function startFireworks(){fwCanvas.style.display='block';fwCtx.clearRect(0,0,fwCanvas.width,fwCanvas.height);animateFW();let c=0;let int=setInterval(()=>{createFirework(Math.random()*innerWidth,Math.random()*innerHeight*0.5);c++;if(c>6)clearInterval(int);},180);setTimeout(()=>{fwCanvas.style.display='none';particles=[];},2000);}
 const nameCanvas=document.getElementById('nameStarsCanvas');const nameCtx=nameCanvas.getContext('2d');
 function resizeName(){nameCanvas.width=innerWidth;nameCanvas.height=innerHeight}resizeName();
-function showNameInStars(){
-  nameCanvas.style.display='block';
-  document.getElementById('starsNameText').classList.add('show');
-  let starParts=[];for(let i=0;i<150;i++) starParts.push({x:Math.random()*nameCanvas.width, y:Math.random()*nameCanvas.height, r:Math.random()*2+1, a:Math.random()});
-  function drawNameStars(){nameCtx.clearRect(0,0,nameCanvas.width,nameCanvas.height);starParts.forEach(s=>{s.a+=0.05;nameCtx.globalAlpha=0.5+Math.sin(s.a)*0.5;nameCtx.fillStyle='#ff8a9a';nameCtx.beginPath();nameCtx.arc(s.x,s.y,s.r,0,Math.PI*2);nameCtx.fill();});if(nameCanvas.style.display!=='none') requestAnimationFrame(drawNameStars);}drawNameStars();
-  setTimeout(()=>{nameCanvas.style.display='none';document.getElementById('starsNameText').classList.remove('show');},3500);
-}
+function showNameInStars(){nameCanvas.style.display='block';document.getElementById('starsNameText').classList.add('show');let starParts=[];for(let i=0;i<150;i++) starParts.push({x:Math.random()*nameCanvas.width, y:Math.random()*nameCanvas.height, r:Math.random()*2+1, a:Math.random()});function drawNameStars(){nameCtx.clearRect(0,0,nameCanvas.width,nameCanvas.height);starParts.forEach(s=>{s.a+=0.05;nameCtx.globalAlpha=0.5+Math.sin(s.a)*0.5;nameCtx.fillStyle='#ff8a9a';nameCtx.beginPath();nameCtx.arc(s.x,s.y,s.r,0,Math.PI*2);nameCtx.fill();});if(nameCanvas.style.display!=='none') requestAnimationFrame(drawNameStars);}drawNameStars();setTimeout(()=>{nameCanvas.style.display='none';document.getElementById('starsNameText').classList.remove('show');},3500);}
 function openAbout(){document.getElementById('aboutModal').classList.add('show')}function closeAbout(){document.getElementById('aboutModal').classList.remove('show')}
 const letterFullText = `Meri Pyaari Fajar G,<br><br>Ap meri duniya hain, meri subah shaam hain. Jab se Ap meri zindagi me aayi hain, har din khubsurat lagta hai.<br><br>Ap meri Queen hain, meri Pari hain, mera sab kuch hain.<br><br>Kya Ap hamesha ke liye meri banengi?<br><br><b style="color:#ff8a9a">Hamesha Ap Ka,<br>Samama 🖤❤️</b>`;
-let typeInterval;
-function openLetter(){document.getElementById('letterModal').classList.add('show');const el=document.getElementById('typewriterText');el.innerHTML='';let i=0;let tag='';let inTag=false;clearInterval(typeInterval);typeInterval=setInterval(()=>{if(i>=letterFullText.length){clearInterval(typeInterval);return;}let char=letterFullText[i];if(char==='<'){inTag=true;tag='';}if(inTag){tag+=char;if(char==='>'){inTag=false;el.innerHTML+=tag;}}else{el.innerHTML+=char;}i++;},22);}
-function closeLetter(){document.getElementById('letterModal').classList.remove('show');clearInterval(typeInterval);}
+let typeInterval;function openLetter(){document.getElementById('letterModal').classList.add('show');const el=document.getElementById('typewriterText');el.innerHTML='';let i=0;let tag='';let inTag=false;clearInterval(typeInterval);typeInterval=setInterval(()=>{if(i>=letterFullText.length){clearInterval(typeInterval);return;}let char=letterFullText[i];if(char==='<'){inTag=true;tag='';}if(inTag){tag+=char;if(char==='>'){inTag=false;el.innerHTML+=tag;}}else{el.innerHTML+=char;}i++;},22);}function closeLetter(){document.getElementById('letterModal').classList.remove('show');clearInterval(typeInterval);}
 
-// NO BUTTON LOGIC - START WITH YES, THEN ROAM FULL SCREEN
 const noBtn=document.getElementById('no');
+const yesBtn=document.getElementById('yes');
+const loveMeter=document.getElementById('loveMeter');
 const texts=["No 🙈","Pakka? 🤭","Socho! 😏","Catch me! 🏃‍♀️","Nope 😜","Hehe 😂","Arre 😜","Impossible! 😝"];
 let isRoaming=false;
+let noCount=0;
+let lovePercent=50;
+
+function spawnPhotoRain(){
+  for(let i=0;i<2;i++){
+    let img=document.createElement('img');
+    img.className='photo-rain';
+    img.src='img1.jpg';
+    img.style.left=Math.random()*100+'vw';
+    img.style.animationDuration=(2+Math.random()*2)+'s';
+    document.body.appendChild(img);
+    setTimeout(()=>img.remove(),4000);
+  }
+}
+
 function moveNoButton(){
     if(!isRoaming){
         isRoaming=true;
         noBtn.classList.add('roaming');
     }
+    noCount++;
+    lovePercent=Math.min(99, lovePercent + 8);
+    loveMeter.innerText=`Love: ${lovePercent}% 💖`;
+    loveMeter.style.color='#fff';
+    
+    // YES button grows AMAZING
+    let scale = 1 + (noCount * 0.12);
+    yesBtn.style.transform=`translate(-50%,-50%) scale(${scale})`;
+    yesBtn.style.boxShadow=`0 ${8*scale}px ${30*scale}px rgba(255,0,51,0.8)`;
+    yesBtn.innerText = noCount > 3 ? "YES YES YES! 😍" : "YES! 😍";
+    
     const padding=15;
     const maxX=window.innerWidth - noBtn.offsetWidth - padding;
     const maxY=window.innerHeight - noBtn.offsetHeight - padding;
@@ -110,6 +131,8 @@ function moveNoButton(){
     noBtn.style.left=x+"px";
     noBtn.style.top=y+"px";
     noBtn.innerText=texts[Math.floor(Math.random()*texts.length)];
+    
+    spawnPhotoRain();
 }
 noBtn.addEventListener('mouseenter', moveNoButton);
 noBtn.addEventListener('touchstart', (e)=>{e.preventDefault(); moveNoButton();});
@@ -120,16 +143,14 @@ document.addEventListener('mousemove', (e)=>{
     let dist=Math.hypot(e.clientX-(r.left+r.width/2), e.clientY-(r.top+r.height/2));
     if(dist<110) moveNoButton();
 });
-setInterval(()=>{let h=document.createElement('div');h.className='heart';h.innerText=['🖤','❤️','💋','✨'][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+'vw';h.style.fontSize=(16+Math.random()*18)+'px';h.style.animationDuration=(2.5+Math.random()*2)+'s';h.style.top='-5%';h.style.position='fixed';document.body.appendChild(h);setTimeout(()=>h.remove(),4500);},250);
+setInterval(()=>{let h=document.createElement('div');h.className='heart';h.innerText=['🖤','❤️','💋','✨'][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+'vw';h.style.fontSize=(16+Math.random()*18)+'px';h.style.animationDuration=(2.5+Math.random()*2)+'s';h.style.top='-5%';h.style.position='fixed';document.body.appendChild(h);setTimeout(()=>h.remove(),4500);},400);
 
-// QUESTIONS
 const questions=[
   {logo:"🥺❤️", title:"Do You Love Me <span>a little? 🥺</span>", sub:`Sach sach batana meri <b>Fajar G</b>!`, badge:"QUESTION 1 OF 3", bar:"33%"},
   {logo:"😜💖", title:"Will You Annoy Me <span>Forever? 😜</span>", sub:`Socho, lifetime ka contract hai <b>Fajar G</b>!`, badge:"QUESTION 2 OF 3", bar:"66%"},
   {logo:"🖤❤️", title:"Will You Be Mine <span>Forever?</span>", sub:`My Queen <b>Fajar G</b>, you are my everything!`, badge:"FINAL QUESTION 💍", bar:"100%"}
 ];
 let currentQ=0;
-const yesBtn=document.getElementById('yes');
 const mainTitle=document.getElementById('mainTitle');
 const mainSub=document.getElementById('mainSub');
 const mainLogo=document.getElementById('mainLogo');
@@ -142,6 +163,8 @@ function showQuestion(idx){
   mainSub.innerHTML=questions[idx].sub;
   topBadge.innerText=questions[idx].badge;
   progressBar.style.width=questions[idx].bar;
+  // reset love meter
+  noCount=0; lovePercent=50; loveMeter.innerText="Love: 50% 💖"; yesBtn.style.transform='translate(-50%,-50%) scale(1)'; yesBtn.innerText="YES! 😍";
 }
 const photoFile="img1.jpg";let showingVideo=true;
 function toggleMedia(){
@@ -159,16 +182,11 @@ function toggleMedia(){
 yesBtn.onclick=()=>{
   if(currentQ < 2){
     currentQ++; showQuestion(currentQ);
-    if(isRoaming) moveNoButton();
-    // reset NO to box for next question
-    if(currentQ<2){
-        isRoaming=false;
-        noBtn.classList.remove('roaming');
-        noBtn.style.left=''; noBtn.style.top='';
-        noBtn.style.transform='translate(-50%,-50%)';
-        noBtn.style.left='68%'; noBtn.style.top='50%';
-        setTimeout(()=>{noBtn.style.left='68%';},10);
-    }
+    isRoaming=false;
+    noBtn.classList.remove('roaming');
+    noBtn.style.left=''; noBtn.style.top='';
+    noBtn.style.transform='translate(-50%,-50%)';
+    noBtn.style.left='68%'; noBtn.style.top='50%';
   } else {
     startFireworks(); setTimeout(showNameInStars, 600);
     noBtn.style.display='none';
