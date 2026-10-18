@@ -176,7 +176,7 @@ function toggleMedia(){
   }else{
     container.innerHTML=`<video id="myVideo" class="final-video" src="video.mp4" autoplay loop playsinline controls></video>`;
     setTimeout(()=>{const v=document.getElementById('myVideo');if(v){v.muted=false;v.volume=1;v.play().catch(()=>{})}},200);
-    if(capEl)capEl.innerText="Our beautiful moment ❤️";document.getElementById('nextBtn').innerText="🖼️ Photo";showingVideo=true;
+    if(capEl)capEl.innerText="Our beautiful moment ❤️";document.getElementById('nextBtn').innerText="🖼️ photo";showingVideo=true;
   }
 }
 yesBtn.onclick=()=>{
